@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+	<head>
+		<link rel="StyleSheet" href="./style/style.css" type="text/css">
+		<meta media="screen and (max-width: 640px)" name="viewport" content="width=290, initial-scale=0.7, maximum-scale=0.7, user-scalable=no">
+		<title>Joshua Diaddigo</title>
+		<meta name = "Computer Science student at the Georgia Institute of Technology, Undergraduate Teaching Assistant for the College of Computing, and Senior Web Developer for Pioneer Magazine."
+	</head>
+	<body>
+		<div class = "page transparent" id = "info">
+			<div class = "joshua"></div>
+			<div class = "title">Who am I?</div>
+			<p>My name is Joshua Diaddigo, and I am a Computer Science student at the Georgia Institute of Technology, an Undergraduate Teaching Assistant for the College of Computing and the Senior Web Developer for Pioneer Magazine.</p>
+			<br/>
+			<div class = "title">What do I do?</div>
+			<p>I create. Over the past six years I have spent the majority of my time studying 3D animation, visual effects, photography and web development. I see computer science as yet another outlet full of opportunities for creativity and innovation. Languages that I am very comfortable with include Python, Java, and jQuery. However, I have utilized many different languages depending on their capabilities and my needs.</p>
+			<br/>
+			<div class = "title">What experience do I have?</div>
+			<p>Just after my sixteenth birthday I was hired at PeachMac, Forsyth where I became possibly the youngest Certified Apple Product Professional in the world at the time. There I gained a greater understanding of technology specifically as it relates to people as I sold Apple solutions and led hundreds of training sessions ranging in volume from one person to groups of 15. This gave me a greater appreciation for intuitive software as I witnessed first hand each customer's misunderstandings and concerns while learning to use their computers. This past Summer, I interned with Tipping Point Gaming where I personally took charge of the development of a game that will soon be distributed to 40% of the casinos in Las Vegas, Nevada. I am now a full time Computer Science student at Georgia Tech where, in addition to my course load, I am a teaching assistant for the College of Computing and the Senior Web Developer at Pioneer Magazine. Between these two positions I teach a group of 50+ students each week, lead a team of web developers in the creation of a new site (not currently live), grade homework, write course content, hold office hours, and try to tell a funny joke every now and then.</p>
+			<br/>
+			<div class = "title">What are my goals?</div>
+			<p>I am currently looking for an opportunity to expand my experience in the field of Computer Science through an internship or co-op. The nature of the work is not incredibly important as long as creativity and problem-solving are involved.</p>
+			<br/>
+			<div class = "title">Do I ever wear cargo shorts?</div>
+			<p>No.</p>
+			<br/>
+			<br/>
+		</div>
+
+		<div class = "page transparent" id = "home">
+			<div class = "cubeContainer">
+				<div class = "welcomeText">Welcome.</div>
+				<div class = "cube">
+					<div id = "cubeLeft" class = "cubeFace"></div>
+					<div id = "cubeRight" class = "cubeFace"></div>
+					<div id = "cubeTop" class = "cubeFace"></div>
+					<div id = "cubeBottom" class = "cubeFace"></div>
+					<div id = "cubeFront" class = "cubeFace"></div>
+					<div id = "cubeBack" class = "cubeFace"></div>
+					<div class = "cubeShadow"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "page transparent" id = "contact">
+			<div class = "contactSection">
+				<div class = "title">I would love to hear from you!</div>
+				<br/>
+				<div class = "text">
+					Email: Joshua@diaddigo.com<br/>
+					Phone: 770.377.4047
+				</div>
+			</div>
+			<div class = "contactSection">
+				<table border = "0" class = "contactForm">
+					<tbody>
+						<tr>
+							<td>
+								Name:<br/>
+							</td>
+							<td>
+								<input type = "text" class = "formName" >
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Email:<br/>
+							</td>
+							<td>
+								<input type="text" class = "formEmail" >
+								<br/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Message:<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" class = "formMessage"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div class = "button" id = "sendMessage">Send</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class = "page transparent" id = "help">
+			<div class = "helpSection">
+				<div class = "title">What can I help you with?</div>
+				<br/>
+				<div class = "text">
+					Write your contact info and question below, and I'll get back to you as soon as I can.
+				</div>
+			</div>
+			<div class = "helpSection">
+				<table border = "0" class = "helpForm">
+					<tbody>
+						<tr>
+							<td>
+								Name:<br/>
+							</td>
+							<td>
+								<input type = "text" class = "helpName" >
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Email:<br/>
+							</td>
+							<td>
+								<input type="text" class = "helpEmail" >
+								<br/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Question:<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" class = "helpQuestion"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div class = "button" id = "sendQuestion">Send</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- Start temp code -->
+		<div class = "page transparent" id = "survey">
+			<div class = "surveySection">
+				<table border = "0" class = "surveyForm">
+					<tbody>
+						<tr>
+							<td>
+								What parts of<br/>
+								recitation do<br/>
+								you like most?<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" id = "surveyQuestion1" class = "surveyMessage"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								If anything,<br/>
+								what would you<br/>
+								change about<br/>
+								recitation?<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" id = "surveyQuestion2" class = "surveyMessage"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Is there any<br/>
+								course material<br/>
+								you would like<br/>
+								to review more<br/>
+								thoroughly?<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" id = "surveyQuestion3" class = "surveyMessage"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Any other<br/>
+								comments or <br/>
+								questions?<br/>
+								<br/>
+								...compliments? (:<br/>
+							</td>
+							<td>
+								<textarea rows = "8" cols = "50" id = "surveyQuestion4" class = "surveyMessage"></textarea>
+								<br>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div class = "button" id = "surveyQuestion">Send</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- End temp code -->
+
+		<div class = "page transparent" id = "resume">
+			<a href = "resume.pdf">
+				<div id = "downloadResume"></div>
+			</a>
+		</div>
+
+ 		<div class = "page" id = "pay">
+ 			<div class = "paySection">
+	 			<div class = "title">Payment Portal</div>
+	 			<br/>
+				<form action="" method="POST" id="payForm">
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">Full Name:</span>
+							<input type="text" id = "payName" data-stripe = "name"/>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">Email:</span>
+							<input type="text" id = "payEmail"/>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">Amount (USD):</span>
+							<input type="text" size="5" id = "payAmount"/>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">Card Number:</span>
+							<input type="text" size="20" data-stripe="number"/>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">CVC:</span>
+							<input type="text" size="4" data-stripe="cvc"/>
+						</label>
+					</div>
+
+					<div class="form-row">
+						<label>
+							<span class = "payFormLabel">Expiration (MM/YYYY):</span>
+							<input type="text" size="2" data-stripe="exp-month"/>
+						</label>
+						<span> / </span>
+						<input type="text" size="4" data-stripe="exp-year"/>
+					</div>
+				</form>
+				<div class = "button" id = "payButton">Send</div>
+				<div id = "payAboutButton">About This Portal</div>
+			</div>
+		</div>
+
+		<div class = "popup transparent">
+			<div class = "popupContainer">	
+				<div class = "popupWindow">
+					<div class = "title popupTitle">Popup</div>
+					<br/>
+					<div class = "text popupText"></div>
+					<div class = "popupCancelButton button">Cancel</div>
+					<div class = "popupButton button">Ok</div>
+				</div>
+			</div>
+		</div>
+
+		<div class = "page transparent" id = "404">
+			  <div class = "title">Oops!</div>
+			  <br/>
+			  <div class = "text">Sorry dude. I have no idea where this page went.</div>
+		</div>
+
+		<div class = "page transparent" id = "403">
+			  <div class = "title">Uh...</div>
+			  <br/>
+			  <div class = "text">You don't have permission to be here.</div>
+		</div>
+
+		<div class = "page transparent" id = "500">
+			  <div class = "title">Ah!</div>
+			  <br/>
+			  <div class = "text">Something went wrong on my end.</div>
+		</div>
+
+		<div class = "nav">
+			<div id = "navHover"></div>
+			<div id = "navPointer"></div>
+			<div class = "navContent">
+				<span class = "nav_button" id = "nav_home"></span>
+				<span class = "nav_button" id = "nav_info"></span>
+				<span class = "nav_button" id = "nav_contact"></span>
+				<span class = "nav_button" id = "nav_resume"></span>
+				<span class = "nav_button" id = "nav_pay">$</span>
+				<a href = "http://instagram.com/dotjoshua" target="_blank"><span class = "nav_button" id = "nav_instagram"></span></a>
+				<a href = "http://twitter.com/dotjoshua" target="_blank"><span class = "nav_button" id = "nav_twitter"></span></a>
+				<a href = "http://dotjoshua.com/" target="_blank"><span class = "nav_button" id = "nav_dotjoshua"></span></a>
+				<a href = "http://github.gatech.edu/jdiaddigo3/" target="_blank"><span class = "nav_button" id = "nav_github"></span></a>
+			</div>
+		</div>
+
+		<div class = "footer">
+			<div class = "footerContent">
+				<span class = "footerLeft">&copy; <span class = "year"></span> Joshua C. Diaddigo</span>
+				<span class = "footerRight">About This Site</span>
+			</div>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="./scripts/scripts.js"></script>
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+	</body>
+</html>

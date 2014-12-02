@@ -1,0 +1,465 @@
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	padding-top: 50px;
+	margin: 0px;
+	background: #ddd; 
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-shadow: 0 -1px rgba( 0, 0, 0, 0.2), 0 1px rgba( 255, 255, 255, 0.7);
+    font-weight: 100;
+}
+
+a {
+	color: #a00;
+}
+
+input {
+	padding: 5px;
+}
+
+.payFormLabel {
+	display: inline-block;
+	width: 175px;
+}
+
+#payName, #payEmail, #payCard {
+	width: 161px;
+}
+
+.nav {
+	position: fixed;
+	top: 0px;
+	height: 50px;
+	width: 100%;
+	background-color: #eee;
+	border-bottom: 1px solid #a00;
+}
+
+.navContent {
+	width: 90%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 10px;
+	line-height: 50px;
+	text-align: left;
+	color: rgba( 0, 0, 0, 0.5 );
+}
+
+.nav_button {
+	width: 50px;
+	height: 50px;
+	background-size: auto 40%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	float: right;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.nav_button:hover {
+	background-position: 50% 70%;
+}
+
+#nav_home {
+	background-image: url(home.png);
+}
+
+#nav_info {
+	background-image: url(info.png);
+}
+
+#nav_contact {
+	background-image: url(contact.png);
+}
+
+#nav_media {
+	background-image: url(media.png);
+}
+
+#nav_resume {
+	background-image: url(resume.png);
+}
+
+#nav_pay {
+	font-size: 20px;
+	text-align: center;
+	float: left;
+	color: rgba( 200, 200, 200, 0.9 );
+	text-shadow: 0px 1px #fff, 0px -1px #eee;
+}
+
+#nav_pay:hover {
+	padding-top: 7px;
+}
+
+#nav_instagram {
+	background-image: url(instagram.png);
+	float: left;
+}
+
+#nav_twitter {
+	background-image: url(twitter.png);
+	float: left;
+}
+
+#nav_dotjoshua {
+	margin: 13px;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	float: left;
+	border-radius: 50%;
+    box-shadow: 0px 1px 0px #fff;
+}
+
+#nav_github {
+	background-image: url(github.png);
+	float: left;
+}
+
+#nav_dotjoshua:hover {
+	margin-top: 18px;
+}
+
+#navPointer {
+	width: 50px;
+	height: 3px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #a00;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+
+#navHover {
+	width: 50px;
+	height: 3px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #aaa;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+
+.page {
+	width: 90%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 20px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+	padding-right: 20px;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+}
+
+.pageLoad {
+	/* Added to page while it loads. */
+}
+
+.title {
+	font-size: 22px;
+	color: #a00;
+}
+
+.welcomeText {
+	position: absolute;
+	height: 100px;
+	margin-left: 150px;
+	font-size: 40px;
+	line-height: 100px;
+	color: rgba( 0, 0, 0, 0.6 );
+}
+
+.cubeContainer {
+	position: absolute;
+	margin-left: 50px;
+	top: 0;
+	width: 100px;
+	-webkit-perspective: 1000px;
+	perspective: 1000px;
+}
+
+.cube {
+	-webkit-animation: rotateCube 60s infinite linear;
+	animation: rotateCube 60s infinite linear;
+    -ms-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+@-webkit-keyframes rotateCube {
+	0% { 
+		-webkit-transform: rotateY(0deg);
+	}
+	100% { 
+		-webkit-transform: rotateY(360deg); 
+	}
+}
+
+@keyframes rotateCube {
+	0% { 
+		-ms-transform: rotateY(0deg);
+		transform: rotateY(0deg); 
+	}
+	100% { 
+		-ms-transform: rotateY(360deg); 
+		transform: rotateY(360deg); 
+	}
+}
+
+.cubeFace {
+	width: 100px;
+	height: 60px;
+	background-color: rgba(200, 0, 0, 1);
+	position: absolute;
+	border: 1px solid #a00;
+	box-shadow: inset 0 0 30px rgba( 0, 0, 0, 0.1 );
+	text-align: center;
+	padding-top: 40px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba( 255, 0, 0, 0.5), 0 -1px 0 rgba( 0, 0, 0, 0.3);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+#cubeLeft { 
+	-ms-transform: rotateY(270deg) translateZ(50px); 
+	-webkit-transform: rotateY(270deg) translateZ(50px); 
+	transform: rotateY(270deg) translateZ(50px); 
+}
+#cubeRight { 
+	-ms-transform: rotateY(90deg) translateZ(50px);
+	-webkit-transform: rotateY(90deg) translateZ(50px);
+	transform: rotateY(90deg) translateZ(50px); 
+}
+#cubeTop { 
+	-ms-transform: rotateX(90deg) translateZ(50px); 
+	-webkit-transform: rotateX(90deg) translateZ(50px); 
+	transform: rotateX(90deg) translateZ(50px); 
+}
+#cubeBottom { 
+	-ms-transform: rotateX(270deg) translateZ(50px);
+	-webkit-transform: rotateX(270deg) translateZ(50px);
+	transform: rotateX(270deg) translateZ(50px); 
+}
+#cubeFront { 
+	-ms-transform: rotateX(0deg) translateZ(50px); 
+	-webkit-transform: rotateX(0deg) translateZ(50px); 
+	transform: rotateX(0deg) translateZ(50px); 
+}
+#cubeBack { 
+	-ms-transform: rotateY(180deg) translateZ(50px);
+	-webkit-transform: rotateY(180deg) translateZ(50px);
+	transform: rotateY(180deg) translateZ(50px); 
+}
+
+.cubeShadow { 
+	-ms-transform: rotateX(90deg) translateZ(-100px) scale(3);
+	-webkit-transform: rotateX(90deg) translateZ(-100px) scale(3);
+	transform: rotateX(90deg) translateZ(-100px) scale(3);
+	width: 100px;
+	height: 100px;
+	background: radial-gradient(circle, rgba(0, 0, 0, 0.07) 5%, rgba(0, 0, 0, 0.02) 30%, rgba( 0, 0, 0, 0) 50%);
+}
+
+.joshua {
+	width: 250px;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	background: url(joshua.png);
+	background-size: 95% 95%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	border: 1px solid #a00;
+}
+
+.helpQuestion, .formMessage, .surveyMessage, input {
+	background-color: rgb(238, 238, 238);
+	border: none;
+	border-bottom: 1px solid #a00;
+	resize: none;
+	margin: 0px;
+	-webkit-appearance: none;
+	margin-bottom: 5px;
+}
+
+.helpQuestion, .formMessage, .surveyMessage {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+td {
+	vertical-align: top;
+	color: #000;
+	padding: 0;
+}
+
+table {
+	width: 100%;
+}
+
+.helpSection, .contactSection {
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.paySection {
+	width: 350px;
+	height: 280px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#resume {
+
+}
+
+#downloadResume {
+	width: 160px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	background: url( resumeIcon.png );
+	background-size: 100%;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+
+#downloadResume:hover {
+	-webkit-transform: scale( 1.05 );
+	transform: scale( 1.05 );
+}
+
+.popup {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba( 0, 0, 0, 0.7 );
+	z-index: 1000;
+    display: none;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.popupContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.popupWindow {
+	width: 80%;
+	max-width: 450px;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #ddd;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+	padding: 5px;
+	width: 50px;
+	text-align: center;
+	background-color: #ccc;
+	border-bottom: 1px solid #a00;
+	cursor: pointer;
+	color: #000;
+	margin-left: auto;
+}
+
+.disabledButton {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.popupButton, .popupCancelButton {
+	padding: 5px;
+	margin-top: 10px;
+}
+
+.popupCancelButton {
+	position: absolute;
+	margin-left: 325px;
+}
+
+#payButton {
+	width: 100%;
+	margin-top: 17px;
+	box-sizing: border-box;
+}
+
+#payAboutButton {
+	width: 100px;
+	margin-top: 10px;
+	margin-left: 250px;
+	font-size: 10px;
+	color: #555;
+	cursor: pointer;
+	text-align: right;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0px;
+	height: 50px;
+	width: 100%;
+	background-color: #eee;
+	border-top: 1px solid #a00;
+}
+
+.footerContent {
+	width: 90%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 10px;
+	line-height: 50px;
+	text-align: left;
+	color: rgba( 0, 0, 0, 0.5 );
+}
+
+.footerLeft {
+	float: left;
+}
+
+.footerRight {
+	float: right;
+	cursor: pointer;
+}
+
+.transparent {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	-khtml-opacity: 0;
+	opacity: 0;
+}
+
+.opaque {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
