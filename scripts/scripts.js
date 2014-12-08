@@ -8,6 +8,9 @@ $( document ).ready( function() {
 	onResizeEvents();
 	setCubeTime();
 	setInterval( function() {
+		updateChat();
+	}, 1000);
+	setInterval( function() {
 		setCubeTime();
 	}, 60000);
 
@@ -36,8 +39,8 @@ $( document ).ready( function() {
 		$( "#sendQuestion" ).on( "click", function( event ) {
 			submitForm( "question" );
 		});
-		$( "#surveyQuestion" ).on( "click", function( event ) {
-			submitSurveyForm();
+		$( "#pollQuestion" ).on( "click", function( event ) {
+			submitpollForm();
 		});
 		$( ".footerRight" ).on( "click", function( event ) {
 			alert("joshua.diaddigo.com", "I built this site entirely from scratch over my two day Fall break of 2014. With the exception of the payment processing, no third party plugins are in use. Feel free to browse through the code and contact me if you have any questions! <br/> <br/> - Joshua Diaddigo", "Cool!", closePopup);
@@ -47,6 +50,15 @@ $( document ).ready( function() {
 		});
 		$( "#payButton" ).on( "click", function() {
 			sendMoney();
+		});
+		$( "#uploadSend" ).on( "click", function() {
+			uploadFile();
+		});
+		$( "#chatSend" ).on( "click", function() {
+			sendChat();
+		});
+		$( ".cube" ).on( "click", function() {
+			alert("It's just a cube.", "It doesn't do anything.");
 		});
 
 		$( ".popupCancelButton" ).on( "click", closePopup );
@@ -62,6 +74,10 @@ $( document ).ready( function() {
 	function bindKeyEvents() {
 		$( document ).keypress( function( event )  {
 			if ( event.which == 13 ) {
+				if ( currentPage == "type" && $( document.activeElement ).attr( "id" ) == "chatInput" ) {
+					sendChat();
+					return;
+				}
 		    	closePopup();
 			}
 		});
@@ -82,12 +98,16 @@ $( document ).ready( function() {
 		var payPos = Math.max( (( height - 400 ) / 2), 0 );
 		var resumePos = Math.max( (( height - 350 ) / 2), 0 );
 		var errorPos = Math.max( (( height - 200 ) / 2), 0 );
+		var uploadPos = Math.max( (( height - 250 ) / 2), 0 );
+		var pollPos = Math.max( (( height - 400 ) / 2), 0 );
 
 		if ( $( "#nav_" + currentPage ).length ) {
 			var pageLeftPos = $( "#nav_" + currentPage ).position().left;
 		} else {
 			var pageLeftPos = -50;
 		}
+
+		moveNavPointer();
 
 		translateDiv( $( ".cubeContainer" ), cubePos, "Y" );
 		translateDiv( $( "#contact" ), contactPos, "Y" );
@@ -97,8 +117,10 @@ $( document ).ready( function() {
 		translateDiv( $( "#404" ), errorPos, "Y" );
 		translateDiv( $( "#403" ), errorPos, "Y" );
 		translateDiv( $( "#500" ), errorPos, "Y" );
+		translateDiv( $( "#upload" ), uploadPos, "Y" );
 		translateDiv( $( "#navHover" ), pageLeftPos, "X" );
 		translateDiv( $( "#navPointer" ), pageLeftPos, "X" );
+		translateDiv( $( "#poll" ), pollPos, "Y" );
 	}
 	$( window ).on( "resize", onResizeEvents);
 
@@ -126,6 +148,16 @@ $( document ).ready( function() {
 				openPage( url.substring( url.indexOf( "#" ) + 1 ), "ignoreHash" );
 			});
 		}
+
+		if (Math.ceil(Math.random() * 2) == 2) {
+			$(".joshua").css( "background", "url(./style/joshua.jpg)" );
+			$(".joshua").css( "background-position", "0% 34%" );
+			$(".joshua:hover").css( "background-position", "0% 34%" );
+		}
+		setTimeout( function() {
+			$(".joshua").css( "-webkit-transition", "1s" );
+			$(".joshua").css( "transition", "1s" );
+		}, 10);
 	}
 
 	function openPage( name, ignoreHash ) {
@@ -134,19 +166,12 @@ $( document ).ready( function() {
 
 		currentPage = name;
 
-		var leftPos;
-		if ( $("#nav_" + name ).length ) {
-			leftPos = $("#nav_" + name ).position().left;
-		} else {
-			leftPos = -50;
-		}
+		moveNavPointer();
 
-		$( "#navHover" ).css( "-ms-transform", "translateX(" + leftPos + "px)" );
-		$( "#navHover" ).css( "-webkit-transform", "translateX(" + leftPos + "px)" );
-		$( "#navHover" ).css( "transform", "translateX(" + leftPos + "px)" );
-		$( "#navPointer" ).css( "-ms-transform", "translateX(" + leftPos + "px)" );
-		$( "#navPointer" ).css( "-webkit-transform", "translateX(" + leftPos + "px)" );
-		$( "#navPointer" ).css( "transform", "translateX(" + leftPos + "px)" );
+		//Must delay to work with webkit browsers with visible scroll bars
+		setTimeout( function() {
+			moveNavPointer()
+		}, 500);
 
 		$( ".page" ).addClass("transparent").removeClass("opaque").addClass("pageLoad");
 		setTimeout( function() {
@@ -156,6 +181,19 @@ $( document ).ready( function() {
 				$("#" + name ).removeClass("transparent").addClass("opaque").removeClass("pageLoad");
 			}, 100);
 		}, 500);
+	}
+
+	function moveNavPointer() {
+		var leftPos;
+
+		if ( $("#nav_" + currentPage ).length ) {
+			leftPos = $("#nav_" + currentPage ).position().left;
+		} else {
+			leftPos = -50;
+		}
+
+		translateDiv( $( "#navHover" ), leftPos, "X" );
+		translateDiv( $( "#navPointer" ), leftPos, "X" );
 	}
 
 	function alert( title, message, button, buttonFunction, showCancel ) {
@@ -292,8 +330,8 @@ $( document ).ready( function() {
 		if ( !isFinite( String( cents ) ) ) {
 			alert( "Please enter a valid amount." );
 			return false;
-		} else if ( cents < 500 ) {
-			alert( "Please enter an amount greater than $4.99" );
+		} else if ( cents < 100 ) {
+			alert( "Please enter an amount greater than $0.99" );
 			return false;
 		}
 
@@ -328,32 +366,86 @@ $( document ).ready( function() {
 		}
 	};
 
+	function uploadFile() {
+		var fileInput = document.getElementById( "uploadFile" );
+		var file = fileInput.files[0];
+
+		if (!file) {
+			alert( "Please select a file" );
+			return;
+		}
+
+		$( ".progressOuter" ).css( "opacity", "1" );
+
+		var xhr = new XMLHttpRequest();
+		xhr.upload.addEventListener( "progress", onprogressHandler, false );
+		xhr.open( "POST", "./scripts/uploadFile.php", true );
+		xhr.setRequestHeader( "X-File-Name", file.name );
+		xhr.setRequestHeader( "Content-Type", "application/octet-stream" );
+		xhr.send( file );
+
+		xhr.onreadystatechange = function( data ) {
+			alert(xhr.responseText);
+			$( "#uploadProgress" ).css( "width", 0 + "%" );
+			$( ".progressOuter" ).css( "opacity", "0" );
+		}
+
+		function onprogressHandler( event ) {
+		    var percent = event.loaded/event.total*100;
+			$( "#uploadProgress" ).css( "width", percent + "%" );
+		}
+	}
+
+	function updateChat() {
+		if ( currentPage == "type" ) {
+			oldContent = $( "#chatHistory" ).html();
+			$.get( "https://joshua.diaddigo.com/scripts/chat/chat.html", function( newContent ) {
+   				if ( newContent != oldContent ) {
+   					$( "#chatHistory" ).html( newContent );
+   					$( "#type" ).animate( { scrollTop: $( "#type" )[0].scrollHeight }, 1000 );
+   				}
+			});
+		}
+	}
+
+	function sendChat() {
+		name = $( "#chatInputName" ).val();
+		message = $( "#chatInput" ).val();
+		$.post( 
+	    	"./scripts/sendChat.php",
+	        { name: name,
+	        message: message },
+	        function( data ) {
+	        	if ( data ) {
+	        		alert( data );
+	        	} else {
+	            	updateChat();
+					$( "#chatInput" ).val("");
+	        	}
+	        }
+	    );
+	}
+
 	// Start temp code
-	function submitSurveyForm() {
-		var Q1 = $( "#surveyQuestion1" ).val();
-		var Q2 = $( "#surveyQuestion2" ).val();
-		var Q3 = $( "#surveyQuestion3" ).val();
-		var Q4 = $( "#surveyQuestion4" ).val();
+	function submitpollForm() {
+		var videoName = $( "input[name=videoName]" ).val();
+		var videoVote = $( "input[name=videoVote]:checked" ).val();
 
 		alert("Sending...");
 
-		$( "#surveyQuestion" ).addClass( "disabledButton" );
+		$( "#pollQuestion" ).addClass( "disabledButton" );
 
         $.post( 
-        	"./scripts/survey.php",
-            { Q1: Q1,
-            Q2: Q2,
-            Q3: Q3,
-            Q4: Q4 },
+        	"./scripts/poll.php",
+            { videoName: videoName,
+            videoVote: videoVote },
             function( data ) {
                 alert( data, "", "Ok", closePopup );
-                if ( data !== "Message failed! :(" ) {
-					$( "#surveyQuestion1" ).val("");
-					$( "#surveyQuestion2" ).val("");
-					$( "#surveyQuestion3" ).val("");
-					$( "#surveyQuestion4" ).val("");
+                if ( data !== "Vote failed! :(" ) {
+					$( "#pollQuestion1" ).val("");
+					$( "#pollQuestion2" ).val("");
                 }
-				$( "#surveyQuestion" ).removeClass( "disabledButton" );
+				$( "#pollQuestion" ).removeClass( "disabledButton" );
             }
         );
 	}
