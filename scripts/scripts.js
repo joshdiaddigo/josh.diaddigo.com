@@ -1,18 +1,16 @@
-$( document ).ready( function() {
+$(function() {
 	var currentPage = "";
- 
+
  	browserAlert();
 	bindClickEvents();
 	bindKeyEvents();
 	setupPage();
+	webGLSetup();
+	webGLRender();
 	onResizeEvents();
-	setCubeTime();
 	setInterval( function() {
 		updateChat();
 	}, 1000);
-	setInterval( function() {
-		setCubeTime();
-	}, 60000);
 
 	function bindClickEvents() {
 		$( "#nav_home" ).on( "click", function() {
@@ -30,6 +28,9 @@ $( document ).ready( function() {
 		$( "#nav_resume" ).on( "click", function() {
 			openPage( "resume" );
 		});
+		$( "#nav_projects" ).on( "click", function() {
+			openPage( "projects" );
+		});
 		$( "#nav_pay" ).on( "click", function() {
 			openPage( "pay" );
 		});
@@ -43,10 +44,10 @@ $( document ).ready( function() {
 			submitpollForm();
 		});
 		$( ".footerRight" ).on( "click", function( event ) {
-			alert("joshua.diaddigo.com", "I built this site entirely from scratch over my two day Fall break of 2014. With the exception of the payment processing, no third party plugins are in use. Feel free to browse through the code and contact me if you have any questions! <br/> <br/> - Joshua Diaddigo", "Cool!", closePopup);
+			alert("joshua.diaddigo.com", "I built this site entirely from scratch over my two day Fall break of 2014. With the exception of the payment processing, no third party plugins are in use. Feel free to browse through the code and contact me if you have any questions! <br/> <br/> - Joshua Diaddigo", "cool!", closePopup);
 		});
 		$( "#payAboutButton" ).on( "click", function( event ) {
-			alert("Payment Portal", "This payment portal is 100% PCI compliant. Your information is sent as an encrypted token over a secure connection, and the payment data itself never touches my own server.", "Great!", closePopup);
+			alert("payment portal", "This payment portal is 100% PCI compliant. Your information is sent as an encrypted token over a secure connection, and the payment data itself never touches my own server.", "great!", closePopup);
 		});
 		$( "#payButton" ).on( "click", function() {
 			sendMoney();
@@ -57,8 +58,11 @@ $( document ).ready( function() {
 		$( "#chatSend" ).on( "click", function() {
 			sendChat();
 		});
-		$( ".cube" ).on( "click", function() {
-			alert("It's just a cube.", "It doesn't do anything.");
+		$( ".logoContainer" ).on( "click", function() {
+			alert("my initials are in there somewhere", "no really.", "ok then");
+		});
+		$( "#joshua" ).on( "click", function() {
+			$( "#joshua" ).toggleClass( "joshuaHover" );
 		});
 
 		$( ".popupCancelButton" ).on( "click", closePopup );
@@ -74,11 +78,14 @@ $( document ).ready( function() {
 	function bindKeyEvents() {
 		$( document ).keypress( function( event )  {
 			if ( event.which == 13 ) {
-				if ( currentPage == "type" && $( document.activeElement ).attr( "id" ) == "chatInput" ) {
+				if ( currentPage == "things" && $( document.activeElement ).attr( "id" ) == "chatInput" ) {
 					sendChat();
 					return;
 				}
-		    	closePopup();
+
+				if (currentPage != "pay") {
+		    		closePopup();
+				}
 			}
 		});
 	}
@@ -86,13 +93,13 @@ $( document ).ready( function() {
 	function browserAlert() {
 		var ie = (window.navigator.userAgent.indexOf("MSIE ") > 0);
 		if ( ie ) {
-			alert("Browser Error", "Hmm... It looks like you're using Internet Explorer. My site will work with later versions of Internet Explorer, though it will not be as pretty. I definitely encourage you to consider upgrading your browser to Chrome or Firefox to make browsing the internet a better experience.");
+			alert("browser error", "Hmm... It looks like you're using Internet Explorer. My site will work with later versions of Internet Explorer, though it will not be as pretty. I definitely encourage you to consider upgrading your browser to Chrome or Firefox to make browsing the internet a better experience.");
 		}
 	}
 
 	function onResizeEvents() {
 		var height = $( window ).height();
-		var cubePos = Math.max( ((height - 100) / 2), 60 );
+		var logoPos = Math.max( ((height - 170) / 2), 60 );
 		var contactPos = Math.max( (( height - $("#contact").outerHeight() ) / 2), 0 );
 		var helpPos = Math.max( (( height - $("#contact").outerHeight() ) / 2), 0 );
 		var payPos = Math.max( (( height - 400 ) / 2), 0 );
@@ -109,7 +116,7 @@ $( document ).ready( function() {
 
 		moveNavPointer();
 
-		translateDiv( $( ".cubeContainer" ), cubePos, "Y" );
+		translateDiv( $( ".logoContainer" ), logoPos, "Y" );
 		translateDiv( $( "#contact" ), contactPos, "Y" );
 		translateDiv( $( "#help" ), helpPos, "Y" );
 		translateDiv( $( "#resume" ), resumePos, "Y" );
@@ -149,14 +156,9 @@ $( document ).ready( function() {
 			});
 		}
 
-		if (Math.ceil(Math.random() * 2) == 2) {
-			$(".joshua").css( "background", "url(./style/joshua.jpg)" );
-			$(".joshua").css( "background-position", "0% 34%" );
-			$(".joshua:hover").css( "background-position", "0% 34%" );
-		}
 		setTimeout( function() {
-			$(".joshua").css( "-webkit-transition", "1s" );
-			$(".joshua").css( "transition", "1s" );
+			$(".expandableImage").css( "-webkit-transition", "1s" );
+			$(".expandableImage").css( "transition", "1s" );
 		}, 10);
 	}
 
@@ -209,12 +211,16 @@ $( document ).ready( function() {
 		} 
 
 		if ( button == undefined ) {
-			button = "Ok";
+			button = "ok";
 		}
 
 		if ( buttonFunction == undefined ) {
 			buttonFunction = closePopup;
 		}
+
+		$( ".page" ).addClass("blur");
+		$( ".nav" ).addClass("blur");
+		$( ".footer" ).addClass("blur");
 
 		$( ".popup" ).css( "display", "table" );
 		$( ".popupTitle" ).html( title );
@@ -228,30 +234,14 @@ $( document ).ready( function() {
 	}
 
 	function closePopup() {
+		$( ".page" ).removeClass("blur");
+		$( ".nav" ).removeClass("blur");
+		$( ".footer" ).removeClass("blur");
+
 		$( ".popup" ).addClass("transparent").removeClass("opaque");
 		setTimeout( function() {
 			$( ".popup" ).css( "display", "none" );
 		}, 500);
-	}
-
-	function setCubeTime() {
-		var time = new Date($.now());
-		var hour = time.getHours();
-		var timeOfDay;
-		var padding;
-
-		if (hour >= 12) {
-			hour -= 12;
-			timeOfDay = "pm";
-		} else {
-			timeOfDay = "am";
-		}
-		if (hour == 0) hour = 12;
-
-		var minute = time.getMinutes();
-		padding = minute < 10 ? "0" : "";
-
-		$("#cubeFront").text( hour + ":" + padding + minute + timeOfDay ); 
 	}
 
 	function submitForm( formType ) {
@@ -311,7 +301,6 @@ $( document ).ready( function() {
 	var email;
 
 	function sendMoney() {
-
 		name = $( "#payName" ).val();
 
 		if ( name == "" ) {
@@ -339,21 +328,31 @@ $( document ).ready( function() {
 				"Are you sure you want to send $" + ( cents / 100 ).toFixed(2) + " to me?", 
 				"Yes", 
 				function() {
-					Stripe.card.createToken( $( "#payForm" ), stripeResponseHandler );
-				}, true );
+					alert(	"Password",
+							"Please enter the password: <input type=\"text\" size=\"20\" id = \"payPassword\"/>",
+							"Ok",
+							function() {
+								Stripe.card.createToken( $( "#payForm" ), stripeResponseHandler );
+							},
+							true
+						);
+				}, 
+				true 
+			);
 		return false;
 	}
 
 	function stripeResponseHandler(status, response ) {
-		alert( "Sending..." );
+		var payPassword = $("#payPassword").val();
 		if (response.error) {
 			alert(response.error.message);
 		} else {
 			token = response.id;
-
+			alert( "Sending..." );
 			$.post( 
 		    	"./scripts/pay.php",
 		        { stripeToken: token,
+		        payPassword: payPassword,
 		        payAmount: cents,
 		        payEmail: email },
 		        function( data ) {
@@ -397,19 +396,27 @@ $( document ).ready( function() {
 	}
 
 	function updateChat() {
-		if ( currentPage == "type" ) {
+		if ( currentPage == "things" ) {
 			oldContent = $( "#chatHistory" ).html();
-			$.get( "https://joshua.diaddigo.com/scripts/chat/chat.html", function( newContent ) {
-   				if ( newContent != oldContent ) {
-   					$( "#chatHistory" ).html( newContent );
-   					$( "#type" ).animate( { scrollTop: $( "#type" )[0].scrollHeight }, 1000 );
-   				}
+			$.ajax({
+				url: "https://joshua.diaddigo.com/scripts/chat/chat.html", 
+    			cache: false,
+    			dataType: "html",
+				success: function( newContent ) {
+	   				if ( newContent != oldContent ) {
+	   					$( "#chatHistory" ).html( newContent );
+	   					$( "#type" ).animate( { scrollTop: $( "#type" )[0].scrollHeight }, 1000 );
+	   				}
+	   			}
 			});
 		}
 	}
 
 	function sendChat() {
 		name = $( "#chatInputName" ).val();
+
+		name = (name == "") ? "anonymous" : name;
+
 		message = $( "#chatInput" ).val();
 		$.post( 
 	    	"./scripts/sendChat.php",
@@ -426,28 +433,83 @@ $( document ).ready( function() {
 	    );
 	}
 
-	// Start temp code
-	function submitpollForm() {
-		var videoName = $( "input[name=videoName]" ).val();
-		var videoVote = $( "input[name=videoVote]:checked" ).val();
+	var webGLLogo1 = null;
+	var weGLLogo2 = null;
+	var webGLLogo3 = null;
+	var scene;
+	var camera;
+	var renderer;
 
-		alert("Sending...");
+	function webGLSetup() {
+		scene = new THREE.Scene();
+		camera = new THREE.PerspectiveCamera( 25, 1, 0.1, 2000 );
 
-		$( "#pollQuestion" ).addClass( "disabledButton" );
+		renderer = Detector.webgl? new THREE.WebGLRenderer({ alpha: true }): new THREE.CanvasRenderer();
+		renderer.setSize( 500, 500 );
+		renderer.domElement.classList.add("logoWebGL");
+		renderer.setClearColor( 0xdddddd, 1 );
 
-        $.post( 
-        	"./scripts/poll.php",
-            { videoName: videoName,
-            videoVote: videoVote },
-            function( data ) {
-                alert( data, "", "Ok", closePopup );
-                if ( data !== "Vote failed! :(" ) {
-					$( "#pollQuestion1" ).val("");
-					$( "#pollQuestion2" ).val("");
-                }
-				$( "#pollQuestion" ).removeClass( "disabledButton" );
-            }
-        );
+		$(".logoContainer").html( renderer.domElement );
+
+		var light = new THREE.AmbientLight( 0x999999 );
+		scene.add( light );
+
+		hemiLight = new THREE.HemisphereLight( 0xfffffff, 0xffffff, 1 ); 
+		scene.add(hemiLight);
+
+		var spotLight = new THREE.SpotLight( 0xffffff );
+		spotLight.position.set( 0, 500, 0 );
+		scene.add( spotLight );
+
+		var loader = new THREE.ColladaLoader();
+		loader.options.convertUpAxis = true;
+
+		loader.load( "scripts/WebGL/logoPart1.dae", function ( collada ) {
+			var dae = collada.scene;
+			var skin = collada.skins[ 0 ];
+			dae.position.set(0, 0, 0);
+			dae.scale.set(0.15, 0.15, 0.15);
+			webGLLogo1 = dae;
+			scene.add(webGLLogo1);
+		});
+
+		loader.load( "scripts/WebGL/logoPart2.dae", function ( collada ) {
+			var dae = collada.scene;
+			var skin = collada.skins[ 0 ];
+			dae.position.set(0, 0, 0);
+			dae.scale.set(0.15, 0.15, 0.15);
+			weGLLogo2 = dae;
+			scene.add(weGLLogo2);
+		});
+
+		loader.load( "scripts/WebGL/logoPart3.dae", function ( collada ) {
+			var dae = collada.scene;
+			var skin = collada.skins[ 0 ];
+			dae.position.set(0, 0, 0);
+			dae.scale.set(0.15, 0.15, 0.15);
+			webGLLogo3 = dae;
+			scene.add(webGLLogo3);
+		});
+
+		camera.position.z = 5;
 	}
-	// End temp code
+
+	function webGLRender() {
+		requestAnimationFrame( webGLRender );
+
+		if (webGLLogo1 != null) {
+			webGLLogo1.rotation.y += 0.005;
+			webGLLogo1.rotation.z -= 0.03;
+		}
+		if (weGLLogo2 != null) {
+			weGLLogo2.rotation.y += 0.005;
+			weGLLogo2.rotation.z -= 0.04;
+		}
+		if (webGLLogo3 != null) {
+			webGLLogo3.rotation.y += 0.005;
+			webGLLogo3.rotation.z -= 0.05;
+		}
+
+		renderer.render(scene, camera);
+	};
 });
