@@ -1,0 +1,18 @@
+html {
+    background-color: #333;
+}
+
+#content {
+    transition: 0.5s;
+}
+
+#logo {
+    background: url(logo.svg) no-repeat;
+    background-size: contain;
+    height: 200px;
+    width: 200px;
+}
+
+.transparent {
+    opacity: 0 !important;
+}
