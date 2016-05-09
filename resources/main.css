@@ -30,6 +30,8 @@ html {
     text-shadow: 0 1px rgba(255, 255, 255, 0.5);
     transition: background-image 1s;
     position: relative;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #jsh_alert_container {
