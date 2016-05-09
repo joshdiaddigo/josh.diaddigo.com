@@ -44,6 +44,7 @@ function setup() {
 }
 
 function alert(message, title, args) {
+    setTimeout(update_alert_bg, 100);
     update_alert_bg();
 
     args = args == undefined ? {} : args;
@@ -66,9 +67,7 @@ function close_alert() {
 window.addEventListener("resize", function() {
     update_alert_pos();
     clearTimeout(refresh_render_timeout);
-    refresh_render_timeout = setTimeout(function() {
-        update_alert_bg();
-    }, 500);
+    refresh_render_timeout = setTimeout(update_alert_bg, 500);
 });
 
 function update_alert_bg() {
