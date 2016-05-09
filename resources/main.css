@@ -3,7 +3,7 @@ html {
 }
 
 #content {
-    transition: 0.5s;
+    transition: 1s;
 }
 
 #logo {
@@ -13,6 +13,24 @@ html {
     width: 200px;
 }
 
+#jsh_alert_window {
+    background: #aaa no-repeat;
+    background-size: auto;
+    overflow: hidden;
+    border: 1px solid rgba(100, 200, 255, 0.2);
+    border-radius: 5px;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+    transition: background-image 1s;
+}
+
+#jsh_alert_container {
+    background-color: rgba(30, 30, 30, 0.4);
+}
+
 .transparent {
     opacity: 0 !important;
+}
+
+.jsh_blurred {
+    filter: none !important;
 }
