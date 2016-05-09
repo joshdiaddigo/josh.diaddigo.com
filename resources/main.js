@@ -1,4 +1,5 @@
 var alert_window;
+var refresh_render_timeout;
 
 window.onload = function() {
     jsh.cm.setup();
@@ -13,16 +14,55 @@ function setup() {
 
     jsh.select("#content").remove_class("transparent");
 
-    alert("test")
+    alert("test", "test");
+
+    jsh.select("#jsh_alert_window").js.addEventListener("mousedown", function(e) {
+        var init_mouse_x = e.pageX;
+        var init_mouse_y = e.pageY;
+        var init_window_x = alert_window.style.left == "" ? 0 : parseInt(alert_window.style.left);
+        var init_window_y = alert_window.style.top == "" ? 0 : parseInt(alert_window.style.top);
+
+        var listener = function(e) {
+            var dx = init_mouse_x - e.pageX;
+            var dy = init_mouse_y - e.pageY;
+
+            alert_window.style.left = (init_window_x - dx) + "px";
+            alert_window.style.top = (init_window_y - dy) + "px";
+
+            update_alert_pos();
+        };
+
+        window.addEventListener("mousemove", listener);
+
+        var clear_listeners = function() {
+            window.removeEventListener("mousemove", listener);
+            window.removeEventListener("mouseup", clear_listeners);
+        };
+
+        window.addEventListener("mouseup", clear_listeners);
+    });
 }
 
 function alert(message, title, args) {
     update_alert_bg();
 
+    args = args == undefined ? {} : args;
+
+    args.button_callback = (args.button_callback == undefined) ? function() {close_alert();} : args.button_callback;
+    args.cancel_callback = (args.cancel_callback == undefined) ? function() {close_alert();} : args.cancel_callback;
+
     jsh.alert.open(message, title, args);
 }
 
-var refresh_render_timeout;
+function close_alert() {
+    setTimeout(function() {
+        alert_window.style.left = alert_window.style.top = "0px";
+        update_alert_bg();
+    }, 500);
+
+    jsh.alert.close();
+}
+
 window.addEventListener("resize", function() {
     update_alert_pos();
     clearTimeout(refresh_render_timeout);
@@ -33,7 +73,7 @@ window.addEventListener("resize", function() {
 
 function update_alert_bg() {
     html2canvas(document.body).then(function(canvas) {
-        boxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 60, 2);
+        boxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 20, 2);
         alert_window.style.backgroundImage = "url('" + canvas.toDataURL() + "')";
         update_alert_pos();
     });

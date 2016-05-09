@@ -13,6 +13,14 @@ html {
     width: 200px;
 }
 
+#jsh_alert_title {
+    color: #a00;
+}
+
+.jsh_alert_button:hover {
+    color: #a00;
+}
+
 #jsh_alert_window {
     background: #aaa no-repeat;
     background-size: auto;
@@ -21,6 +29,7 @@ html {
     border-radius: 5px;
     text-shadow: 0 1px rgba(255, 255, 255, 0.5);
     transition: background-image 1s;
+    position: relative;
 }
 
 #jsh_alert_container {
