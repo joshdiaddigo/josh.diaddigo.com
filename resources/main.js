@@ -73,7 +73,7 @@ window.addEventListener("resize", function() {
 
 function update_alert_bg() {
     html2canvas(document.body).then(function(canvas) {
-        boxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 20, 2);
+        stackBoxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 50, 2);
         alert_window.style.backgroundImage = "url('" + canvas.toDataURL() + "')";
         update_alert_pos();
     });
