@@ -44,4 +44,5 @@ html {
 
 .jsh_blurred {
     filter: none !important;
+    -webkit-filter: none !important;
 }
