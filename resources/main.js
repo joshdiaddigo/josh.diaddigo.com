@@ -10,7 +10,6 @@ window.onload = function() {
 function setup() {
     jsh.select("#jsh_alert_container").js.setAttribute("data-html2canvas-ignore", "true");
     alert_window = jsh.select("#jsh_alert_window").js;
-    update_alert_bg();
 
     jsh.select("#content").remove_class("transparent");
 
@@ -80,9 +79,6 @@ function open_page(page_div_id) {
         jsh.select("#" + page_div_id).remove_class("display_none");
         setTimeout(function() {
             jsh.select("#" + page_div_id).remove_class("transparent");
-            setTimeout(function() {
-                update_alert_bg();
-            }, 500);
         }, 10);
     }, 500);
 
@@ -91,7 +87,7 @@ function open_page(page_div_id) {
 
 function on_hash_change() {
     if (location.href.indexOf('#') != -1) {
-        open_page(location.href.substring(location.href.indexOf("#")) + "_page");
+        open_page(location.href.substring(location.href.indexOf("#") + 1) + "_page");
     } else {
         open_page("home_page");
     }
@@ -99,7 +95,6 @@ function on_hash_change() {
 
 function alert(message, title, args) {
     setTimeout(update_alert_bg, 100);
-    update_alert_bg();
 
     args = args == undefined ? {} : args;
 
@@ -125,7 +120,7 @@ window.addEventListener("resize", function() {
 });
 
 function update_alert_bg() {
-    html2canvas(document.body).then(function(canvas) {
+    html2canvas(document.body, {async: true}).then(function(canvas) {
         stackBoxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 50, 2);
         alert_window.style.backgroundImage = "url('" + canvas.toDataURL() + "')";
         update_alert_pos();

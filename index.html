@@ -11,13 +11,27 @@
 </head>
 <body>
     <div id="nav">
-        <div class="nav_item">home</div>
+        <div id="nav_inner">
+            <div class="nav_item">home</div>
+            <div class="nav_item">info</div>
+            <div class="nav_item">contact</div>
+            <div class="nav_item">projects</div>
+            <div class="nav_item">resume</div>
+            <div id="right_aligned_buttons">
+                <div class="nav_item">github</div>
+                <div class="nav_item">twitter</div>
+                <div class="nav_item">instagram</div>
+            </div>
+        </div>
     </div>
     <div id="content">
         <div class="page transparent display_none" id="home_page">
             <img id="logo" src="resources/logo.svg"/>
             welcome.
         </div>
+        <div class="page transparent display_none" id="info_page"></div>
+        <div class="page transparent display_none" id="contact_page"></div>
+        <div class="page transparent display_none" id="projects_page"></div>
     </div>
     <script src="./resources/lib/html2canvas.js"></script>
     <script src="./resources/lib/StackBoxBlur.js"></script>
