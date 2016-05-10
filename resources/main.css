@@ -1,16 +1,31 @@
-html {
+html, body {
     background-color: #333;
+    font-family: AktivGroteskLight, sans-serif;
+}
+
+.page {
+    transition: 1s;
+    height: 100%;
+    width: 100%;
 }
 
 #content {
-    transition: 1s;
+    width: 100%;
+    height: 100%;
 }
 
 #logo {
-    background: url(logo.svg) no-repeat;
-    background-size: contain;
-    height: 200px;
     width: 200px;
+    margin-right: 20px;
+}
+
+#home_page {
+    color: #ddd;
+    font-weight: 100;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #jsh_alert_title {

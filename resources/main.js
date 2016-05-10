@@ -1,5 +1,6 @@
 var alert_window;
 var refresh_render_timeout;
+var current_page;
 
 window.onload = function() {
     jsh.cm.setup();
@@ -7,14 +8,11 @@ window.onload = function() {
 };
 
 function setup() {
-
     jsh.select("#jsh_alert_container").js.setAttribute("data-html2canvas-ignore", "true");
     alert_window = jsh.select("#jsh_alert_window").js;
     update_alert_bg();
 
     jsh.select("#content").remove_class("transparent");
-
-    alert("test", "test");
 
     jsh.select("#jsh_alert_window").js.addEventListener("mousedown", function(e) {
         var init_mouse_x = e.pageX;
@@ -41,6 +39,55 @@ function setup() {
 
         window.addEventListener("mouseup", clear_listeners);
     });
+
+    if ("onhashchange" in window) {
+        window.addEventListener("hashchange", on_hash_change);
+    }
+
+    open_page("home_page");
+}
+
+function open_page(page_div_id) {
+    if (jsh.select("#" + page_div_id) == undefined) {
+        alert("Page does not exist.", "Oops!");
+        return;
+    }
+
+    if (current_page == page_div_id) {
+        return;
+    }
+
+    current_page = page_div_id;
+
+    var pages = jsh.select(".page");
+    for (var i in pages) {
+        pages[i].add_class("transparent");
+    }
+
+    setTimeout(function() {
+        var pages = jsh.select(".page");
+        for (var i in pages) {
+            pages[i].add_class("display_none");
+        }
+
+        jsh.select("#" + page_div_id).remove_class("display_none");
+        setTimeout(function() {
+            jsh.select("#" + page_div_id).remove_class("transparent");
+            setTimeout(function() {
+                update_alert_bg();
+            }, 500);
+        }, 10);
+    }, 500);
+
+    window.location.hash = page_div_id.substring(0, page_div_id.length - 5);
+}
+
+function on_hash_change() {
+    if (location.href.indexOf('#') != -1) {
+        open_page(location.href.substring(location.href.indexOf("#")) + "_page");
+    } else {
+        open_page("home_page");
+    }
 }
 
 function alert(message, title, args) {
