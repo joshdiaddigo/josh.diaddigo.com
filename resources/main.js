@@ -44,6 +44,13 @@ function setup() {
         window.addEventListener("hashchange", on_hash_change);
     }
 
+    var nav_items = jsh.select(".nav_item");
+    for (var i in nav_items) {
+        nav_items[i].js.addEventListener("click", function(e) {
+            open_page(e.target.innerHTML + "_page");
+        });
+    }
+
     open_page("home_page");
 }
 
