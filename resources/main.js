@@ -4,6 +4,7 @@ var current_page;
 
 window.onload = function() {
     jsh.cm.setup();
+    terminal.setup();
     setup();
 };
 
@@ -39,84 +40,6 @@ function setup() {
         window.addEventListener("mouseup", clear_listeners);
     });
 
-    jsh.select("#terminal_title").js.addEventListener("mousedown", function(e) {
-        var terminal_window = jsh.select("#terminal_window").js;
-
-        var init_mouse_x = e.pageX;
-        var init_mouse_y = e.pageY;
-        var init_window_x = terminal_window.style.left == "" ? 0 : parseInt(terminal_window.style.left);
-        var init_window_y = terminal_window.style.top == "" ? 0 : parseInt(terminal_window.style.top);
-
-        var listener = function(e) {
-            var dx = init_mouse_x - e.pageX;
-            var dy = init_mouse_y - e.pageY;
-
-            terminal_window.style.left = (init_window_x - dx) + "px";
-            terminal_window.style.top = (init_window_y - dy) + "px";
-        };
-
-        window.addEventListener("mousemove", listener);
-
-        var clear_listeners = function() {
-            window.removeEventListener("mousemove", listener);
-            window.removeEventListener("mouseup", clear_listeners);
-        };
-
-        window.addEventListener("mouseup", clear_listeners);
-    });
-
-    jsh.select("#terminal_resize_bottom_right").js.addEventListener("mousedown", function(e) {
-        var terminal_window = jsh.select("#terminal_window").js;
-
-        var init_mouse_x = e.pageX;
-        var init_mouse_y = e.pageY;
-        var init_window_x = terminal_window.style.left == "" ? 0 : parseInt(terminal_window.style.left);
-        var init_window_y = terminal_window.style.top == "" ? 0 : parseInt(terminal_window.style.top);
-        var init_window_width = terminal_window.style.width == "" ? 500 : parseInt(terminal_window.style.width);
-        var init_window_height = terminal_window.style.height == "" ? 300 : parseInt(terminal_window.style.height);
-
-        var listener = function(e) {
-            var dx = init_mouse_x - e.pageX;
-            var dy = init_mouse_y - e.pageY;
-
-            if ((init_window_width - dx) > 200) {
-                terminal_window.style.left = init_window_x - (dx / 2) + "px";
-                terminal_window.style.width = (init_window_width - dx) + "px";
-            }
-
-            if ((init_window_height - dy) > 100) {
-                terminal_window.style.top = init_window_y - (dy / 2) + "px";
-                terminal_window.style.height = (init_window_height - dy) + "px";
-            }
-        };
-
-        window.addEventListener("mousemove", listener);
-
-        var clear_listeners = function() {
-            window.removeEventListener("mousemove", listener);
-            window.removeEventListener("mouseup", clear_listeners);
-        };
-
-        window.addEventListener("mouseup", clear_listeners);
-    });
-
-    jsh.select("#terminal_absolute").js.addEventListener("click", function() {
-        jsh.select("#terminal_input_field").js.select();
-    });
-
-    jsh.select("#terminal_input_field").js.addEventListener("keypress", function(e) {
-        if (e.keyCode == 13) {
-            parse_terminal_input(e.target.value);
-            e.target.value = "";
-        }
-    });
-
-    jsh.select("#terminal_exit").js.addEventListener("click", close_terminal);
-
-    if ("onhashchange" in window) {
-        window.addEventListener("hashchange", on_hash_change);
-    }
-
     var nav_items = jsh.select(".nav_item");
     for (var i in nav_items) {
         nav_items[i].js.addEventListener("click", function(e) {
@@ -125,7 +48,7 @@ function setup() {
     }
 
     open_page("home_page");
-    open_terminal();
+    terminal.open();
 }
 
 function open_page(page_div_id) {
@@ -205,32 +128,4 @@ function update_alert_bg() {
 function update_alert_pos() {
     var bounds = alert_window.getBoundingClientRect();
     alert_window.style.backgroundPosition = (-bounds.left - 11) + "px " + (-bounds.top - 11) + "px";
-}
-
-function open_terminal() {
-    jsh.select("#terminal_container").remove_class("display_none");
-    jsh.select("#terminal_container").remove_class("transparent");
-}
-
-function close_terminal() {
-    jsh.select("#terminal_container").add_class("transparent");
-    setTimeout(function() {
-        jsh.select("#terminal_container").add_class("display_none");
-    }, 500);
-}
-
-function parse_terminal_input(input) {
-    if (input == "ls") {
-        output_to_terminal(input, "some_file.txt");
-    }
-}
-
-function output_to_terminal(input, output) {
-    var history = jsh.select("#terminal_history").js;
-
-    output = "joshua.diaddigo.com:~ guest$ " + input + "\n" + output;
-    output = "<br>" + output.split("\n").join("<br>");
-
-    history.innerHTML = history.innerHTML + output;
-    jsh.select("#terminal_scroll").js.scrollTop = 99999999;
 }
