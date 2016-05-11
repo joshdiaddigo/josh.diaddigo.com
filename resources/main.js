@@ -79,10 +79,12 @@ function setup() {
             var dx = init_mouse_x - e.pageX;
             var dy = init_mouse_y - e.pageY;
 
-            terminal_window.style.left = init_window_x - (dx / 2) + "px";
-            terminal_window.style.top = init_window_y - (dy / 2) + "px";
-            terminal_window.style.width = (init_window_width - dx) + "px";
-            terminal_window.style.height = (init_window_height - dy) + "px";
+            if ((init_window_width - dx) > 200 && (init_window_height - dy) > 100) {
+                terminal_window.style.left = init_window_x - (dx / 2) + "px";
+                terminal_window.style.top = init_window_y - (dy / 2) + "px";
+                terminal_window.style.width = (init_window_width - dx) + "px";
+                terminal_window.style.height = (init_window_height - dy) + "px";
+            }
         };
 
         window.addEventListener("mousemove", listener);
