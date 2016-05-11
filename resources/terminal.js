@@ -9,6 +9,7 @@ var terminal = {
         terminal.history_div = jsh.select("#terminal_history");
         terminal.scroll_div = jsh.select("#terminal_scroll");
         terminal.command_down = false;
+        terminal.python_mode = false;
 
         jsh.select("#terminal_title").js.addEventListener("mousedown", function(e) {
             var terminal_window = jsh.select("#terminal_window").js;
@@ -86,13 +87,13 @@ var terminal = {
         });
 
         jsh.select("#terminal_input_field").js.addEventListener("keydown", function(e) {
-            if (e.keyCode == 91) {
+            if (e.keyCode == 91|| e.keyCode == 93) {
                 terminal.command_down = true;
             }
         });
 
         jsh.select("#terminal_input_field").js.addEventListener("keyup", function(e) {
-            if (e.keyCode == 91) {
+            if (e.keyCode == 91 || e.keyCode == 93) {
                 terminal.command_down = false;
             }
         });
@@ -117,16 +118,30 @@ var terminal = {
     },
 
     parse_input: function(input) {
-        input = input.split(" ");
-        var command = input[0];
-        var args = input.slice(1);
-
         terminal.output(terminal.input_prefix_div.js.innerText + " " + input);
 
-        if (command == "ls") {
-            terminal.output("some_file.txt");
+        if (!terminal.python_mode) {
+            input = input.split(" ");
+            var command = input[0];
+            var args = input.slice(1);
+
+            if (command == "ls") {
+                terminal.output("some_file.txt");
+            } else if (command == "python") {
+                terminal.output('Python 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
+                [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin\n\
+                Type "help", "copyright", "credits" or "license" for more information.');
+
+                terminal.set_prefix(">>> ");
+                terminal.python_mode = true;
+            } else {
+                terminal.output("-bash: " + command + ": command not found");
+            }
         } else {
-            terminal.output("-bash: " + command + ": command not found");
+            if (input == "exit()") {
+                terminal.python_mode = false;
+                terminal.set_prefix("joshua.diaddigo.com:~ guest$ ");
+            }
         }
     },
 
@@ -137,9 +152,9 @@ var terminal = {
         terminal.scroll_div.js.scrollTop = 99999999;
     },
 
-    update_input_prefix: function(terminal_input_prefix) {
+    set_prefix: function(terminal_input_prefix) {
         terminal.input_prefix_div.js.innerText = terminal_input_prefix;
-        terminal.input_prefix_div.js.style.width = ((terminal_input_prefix.length + 1) * 7.5) + "px";
+        terminal.input_prefix_div.js.style.width = ((terminal_input_prefix.length) * 7.25) + "px";
     },
 
     html: ' <div id="terminal_container" class="transparent display_none">\
@@ -160,7 +175,7 @@ var terminal = {
                             <table id="terminal_input_table">\
                                 <tr>\
                                     <td id="terminal_input_prefix">\
-                                        joshua.diaddigo.com:~ guest$\
+                                        joshua.diaddigo.com:~ guest$ \
                                     </td>\
                                     <td>\
                                         <input id="terminal_input_field" autocomplete="off"/>\
