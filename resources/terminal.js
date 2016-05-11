@@ -8,6 +8,7 @@ var terminal = {
         terminal.input_prefix_div = jsh.select("#terminal_input_prefix");
         terminal.history_div = jsh.select("#terminal_history");
         terminal.scroll_div = jsh.select("#terminal_scroll");
+        terminal.command_down = false;
 
         jsh.select("#terminal_title").js.addEventListener("mousedown", function(e) {
             var terminal_window = jsh.select("#terminal_window").js;
@@ -78,6 +79,21 @@ var terminal = {
             if (e.keyCode == 13) {
                 terminal.parse_input(e.target.value);
                 e.target.value = "";
+            } else if(e.keyCode == 107 && terminal.command_down){
+                terminal.history_div.js.innerHTML = "";
+                e.target.value = "";
+            }
+        });
+
+        jsh.select("#terminal_input_field").js.addEventListener("keydown", function(e) {
+            if (e.keyCode == 91) {
+                terminal.command_down = true;
+            }
+        });
+
+        jsh.select("#terminal_input_field").js.addEventListener("keyup", function(e) {
+            if (e.keyCode == 91) {
+                terminal.command_down = false;
             }
         });
 
@@ -101,18 +117,23 @@ var terminal = {
     },
 
     parse_input: function(input) {
-        if (input == "ls") {
-            terminal.output(input, "some_file.txt");
+        input = input.split(" ");
+        var command = input[0];
+        var args = input.slice(1);
+
+        terminal.output(terminal.input_prefix_div.js.innerText + " " + input);
+
+        if (command == "ls") {
+            terminal.output("some_file.txt");
+        } else {
+            terminal.output("-bash: " + command + ": command not found");
         }
     },
 
-    output: function(input, output) {
+    output: function(output) {
         var history = terminal.history_div.js;
-
-        output = terminal.input_prefix_div.js.innerText + " " + input + "\n" + output;
         output = "<br>" + output.split("\n").join("<br>");
-
-        history.innerHTML = history.innerHTML + output;
+        history.innerHTML = history.innerHTML.replace(/^<br>+|<br>+$/gm,'') + output;
         terminal.scroll_div.js.scrollTop = 99999999;
     },
 
