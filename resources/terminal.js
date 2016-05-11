@@ -11,6 +11,8 @@ var terminal = {
         terminal.command_down = false;
         terminal.python_mode = false;
 
+        Sk.configure({output:terminal.output, retainglobals: true});
+
         jsh.select("#terminal_title").js.addEventListener("mousedown", function(e) {
             var terminal_window = jsh.select("#terminal_window").js;
 
@@ -118,37 +120,52 @@ var terminal = {
     },
 
     parse_input: function(input) {
-        terminal.output(terminal.input_prefix_div.js.innerText + " " + input);
-
         if (!terminal.python_mode) {
+            terminal.output("<br>" + terminal.input_prefix_div.js.innerText + " " + input);
+
             input = input.split(" ");
             var command = input[0];
             var args = input.slice(1);
 
             if (command == "ls") {
-                terminal.output("some_file.txt");
+                terminal.output("\nsome_file.txt");
             } else if (command == "python") {
-                terminal.output('Python 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
+                terminal.output('\nPython 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
                 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin\n\
-                Type "help", "copyright", "credits" or "license" for more information.');
+                Type "help", "copyright", "credits" or "license" for more information.\n');
 
                 terminal.set_prefix(">>> ");
                 terminal.python_mode = true;
             } else {
-                terminal.output("-bash: " + command + ": command not found");
+                terminal.output("\n-bash: " + command + ": command not found");
             }
         } else {
+            terminal.output(terminal.input_prefix_div.js.innerText + " " + input);
+
             if (input == "exit()") {
                 terminal.python_mode = false;
                 terminal.set_prefix("joshua.diaddigo.com:~ guest$ ");
+            } else {
+                terminal.output("<br>");
+                terminal.interpret_python(input);
             }
         }
     },
 
+    interpret_python: function(code) {
+        Sk.misceval.asyncToPromise(function() {
+            return Sk.importMainWithBody("<stdin>", false, code, true);
+        }).then(function(mod) {
+            terminal.mod = mod;
+        }, function(err) {
+            terminal.output(err.toString() + "\n");
+        });
+    },
+
     output: function(output) {
         var history = terminal.history_div.js;
-        output = "<br>" + output.split("\n").join("<br>");
-        history.innerHTML = history.innerHTML.replace(/^<br>+|<br>+$/gm,'') + output;
+        output = output.split("\n").join("<br>");
+        history.innerHTML = history.innerHTML.replace(/^<br>+/gm,'') + output;
         terminal.scroll_div.js.scrollTop = 99999999;
     },
 
