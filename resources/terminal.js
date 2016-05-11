@@ -1,5 +1,9 @@
 var terminal = {
     setup: function() {
+        var terminal_container = document.createElement("div");
+        terminal_container.innerHTML = terminal.html;
+        jsh.select("#content").js.appendChild(terminal_container);
+
         terminal.container_div = jsh.select("#terminal_container");
         terminal.input_prefix_div = jsh.select("#terminal_input_prefix");
         terminal.history_div = jsh.select("#terminal_history");
@@ -115,5 +119,38 @@ var terminal = {
     update_input_prefix: function(terminal_input_prefix) {
         terminal.input_prefix_div.js.innerText = terminal_input_prefix;
         terminal.input_prefix_div.js.style.width = ((terminal_input_prefix.length + 1) * 7.5) + "px";
-    }
+    },
+
+    html: ' <div id="terminal_container" class="transparent display_none">\
+                <div id="terminal_window">\
+                    <div id="terminal_absolute">\
+                        <div id="terminal_ui">\
+                            <div id="terminal_title">guest – bash</div>\
+                            <div id="terminal_exit" class="terminal_button"></div>\
+                            <div id="terminal_minimize" class="terminal_button"></div>\
+                            <div id="terminal_fullscreen" class="terminal_button"></div>\
+                        </div>\
+                        <div id="terminal_scroll">\
+                        <div id="terminal_content">\
+                        <div id="terminal_history">\
+                            Last login: Tue May 10 19:03:26 on ttys002\
+                        </div>\
+                        <div id="terminal_input">\
+                            <table id="terminal_input_table">\
+                                <tr>\
+                                    <td id="terminal_input_prefix">\
+                                        joshua.diaddigo.com:~ guest$\
+                                    </td>\
+                                    <td>\
+                                        <input id="terminal_input_field" autocomplete="off"/>\
+                                    </td>\
+                                </tr>\
+                            </table>\
+                        </div>\
+                    </div>\
+                </div>\
+                <div id="terminal_resize_bottom_right"></div>\
+            </div>\
+        </div>\
+    </div>'
 };
