@@ -184,26 +184,26 @@ var terminal = {
                             <div id="terminal_fullscreen" class="terminal_button"></div>\
                         </div>\
                         <div id="terminal_scroll">\
-                        <div id="terminal_content">\
-                        <div id="terminal_history">\
-                            Last login: Tue May 10 19:03:26 on ttys002\
+                            <div id="terminal_content">\
+                                <div id="terminal_history">\
+                                    Last login: Tue May 10 19:03:26 on ttys002\
+                                </div>\
+                                <div id="terminal_input">\
+                                    <table id="terminal_input_table">\
+                                        <tr>\
+                                            <td id="terminal_input_prefix">\
+                                                joshua.diaddigo.com:~ guest$ \
+                                            </td>\
+                                            <td>\
+                                                <input id="terminal_input_field" autocomplete="off"/>\
+                                            </td>\
+                                        </tr>\
+                                    </table>\
+                                </div>\
+                            </div>\
                         </div>\
-                        <div id="terminal_input">\
-                            <table id="terminal_input_table">\
-                                <tr>\
-                                    <td id="terminal_input_prefix">\
-                                        joshua.diaddigo.com:~ guest$ \
-                                    </td>\
-                                    <td>\
-                                        <input id="terminal_input_field" autocomplete="off"/>\
-                                    </td>\
-                                </tr>\
-                            </table>\
-                        </div>\
+                        <div id="terminal_resize_bottom_right"></div>\
                     </div>\
                 </div>\
-                <div id="terminal_resize_bottom_right"></div>\
-            </div>\
-        </div>\
-    </div>'
+            </div>'
 };
