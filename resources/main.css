@@ -190,6 +190,11 @@ html, body {
     border-color: #27aa35;
 }
 
+#terminal_scroll {
+    overflow-y: scroll;
+    height: 100%;
+}
+
 #terminal_content {
     padding: 28px 5px 5px;
     box-sizing: border-box;
@@ -201,28 +206,41 @@ html, body {
 }
 
 #terminal_resize_bottom_right {
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 10px;
     position: absolute;
     bottom: 0;
     right: 0;
     cursor: nwse-resize;
 }
 
-#terminal_input_fixed {
-    position: absolute;
-}
-
 #terminal_input_field {
-    position: absolute;
-    padding-left: 209px;
     background: rgba(0, 0, 0, 0);
     color: #fff;
     font-family: Menlo, monospace;
     font-size: 12px;
-    margin-left: -4px;
-    margin-top: -3px;
-    width: 100%;
     box-sizing: border-box;
     outline: none;
+    display: inline-block;
+    -webkit-appearance: none;
+    border: none;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#terminal_input_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#terminal_input_table td {
+    padding: 0;
+    margin: 0;
+}
+
+#terminal_input_field_container:before {
+    content: "joshua.diaddigo.com:~ guest$";
+    position: absolute;
 }

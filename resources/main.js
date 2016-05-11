@@ -95,6 +95,17 @@ function setup() {
         window.addEventListener("mouseup", clear_listeners);
     });
 
+    jsh.select("#terminal_absolute").js.addEventListener("click", function() {
+        jsh.select("#terminal_input_field").js.select();
+    });
+
+    jsh.select("#terminal_input_field").js.addEventListener("keypress", function(e) {
+        if (e.keyCode == 13) {
+            parse_terminal_input(e.target.value);
+            e.target.value = "";
+        }
+    });
+
     jsh.select("#terminal_exit").js.addEventListener("click", close_terminal);
 
     if ("onhashchange" in window) {
@@ -201,4 +212,20 @@ function close_terminal() {
     setTimeout(function() {
         jsh.select("#terminal_container").add_class("display_none");
     }, 500);
+}
+
+function parse_terminal_input(input) {
+    if (input == "ls") {
+        output_to_terminal(input, "some_file.txt");
+    }
+}
+
+function output_to_terminal(input, output) {
+    var history = jsh.select("#terminal_history").js;
+
+    output = "joshua.diaddigo.com:~ guest$ " + input + "\n" + output;
+    output = "<br>" + output.split("\n").join("<br>");
+
+    history.innerHTML = history.innerHTML + output;
+    jsh.select("#terminal_scroll").js.scrollTop = 99999999;
 }
