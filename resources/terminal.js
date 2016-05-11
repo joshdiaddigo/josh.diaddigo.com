@@ -10,6 +10,9 @@ var terminal = {
         terminal.scroll_div = jsh.select("#terminal_scroll");
         terminal.command_down = false;
         terminal.python_mode = false;
+        terminal.file_system = {Users: {"joshua.diaddigo.com": {test: {}}}};
+        terminal.cwd = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
+        terminal.cwd_string = "~";
 
         Sk.configure({output:terminal.output, retainglobals: true});
 
@@ -91,6 +94,11 @@ var terminal = {
         jsh.select("#terminal_input_field").js.addEventListener("keydown", function(e) {
             if (e.keyCode == 91|| e.keyCode == 93) {
                 terminal.command_down = true;
+            } else if (e.keyCode == 9) {
+                var partial_item = jsh.select("#terminal_input_field").js.value.split(" ");
+                partial_item = partial_item[partial_item.length - 1];
+                terminal.tab_complete(partial_item);
+                e.preventDefault();
             }
         });
 
@@ -128,7 +136,16 @@ var terminal = {
             var args = input.slice(1);
 
             if (command == "ls") {
-                terminal.output("\nsome_file.txt");
+                var folder = terminal.cwd[terminal.cwd.length - 1];
+                for (var file in folder) {
+                    if (folder.hasOwnProperty(file)) {
+                        terminal.output("\n" + file);
+                    }
+                }
+            } else if (command == "cd") {
+                if (args[0] != undefined) {
+                    terminal.change_directory(args[0]);
+                }
             } else if (command == "python") {
                 terminal.output('\nPython 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
                 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin\n\
@@ -136,6 +153,18 @@ var terminal = {
 
                 terminal.set_prefix(">>> ");
                 terminal.python_mode = true;
+            } else if (command == "help") {
+                terminal.output("\nThis is a shell I made with no practical use whatsoever. Some fun commands worth trying out:\n");
+
+                var commands = ["python"];
+                for (var i in commands) {
+                    if (commands.hasOwnProperty(i)) {
+                        terminal.output("\n" + commands[i]);
+                    }
+                }
+                terminal.output("\n");
+            } else if (command == "restart") {
+                window.location.reload();
             } else {
                 terminal.output("\n-bash: " + command + ": command not found");
             }
@@ -144,7 +173,7 @@ var terminal = {
 
             if (input == "exit()") {
                 terminal.python_mode = false;
-                terminal.set_prefix("joshua.diaddigo.com:~ guest$ ");
+                terminal.set_prefix("joshua.diaddigo.com:" + terminal.cwd_string + " guest$ ");
             } else {
                 terminal.output("<br>");
                 terminal.interpret_python(input);
@@ -164,9 +193,103 @@ var terminal = {
 
     output: function(output) {
         var history = terminal.history_div.js;
-        output = output.split("\n").join("<br>");
-        history.innerHTML = history.innerHTML.replace(/^<br>+/gm,'') + output;
+        output = output.replace(/\n/gm,'<br>');
+        history.innerHTML = history.innerHTML.replace(/^\s*<br>+/gm,'') + output;
         terminal.scroll_div.js.scrollTop = 99999999;
+    },
+
+    change_directory: function(path) {
+        var path_edits = path.split("/");
+
+        for (var i in path_edits) {
+            if (path_edits.hasOwnProperty(i)) {
+                if (path_edits[i] == "") {
+                    if (i == 0) {
+                        terminal.cwd = [terminal.file_system];
+                    }
+                } else if (path_edits[i] == "..") {
+                    if (terminal.cwd.length > 1) {
+                        terminal.cwd.pop();
+                    }
+                } else if (terminal.cwd[terminal.cwd.length - 1][path_edits[i]] != undefined) {
+                    terminal.cwd.push(terminal.cwd[terminal.cwd.length - 1][path_edits[i]]);
+                } else if (path_edits[i] == "~") {
+                    terminal.cwd = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
+                } else if (path_edits[i] != ".") {
+                    terminal.output("\n-bash: cd: " + path_edits[i] + ": No such file or directory")
+                }
+            }
+        }
+
+        var cwd_string = "/";
+        var path_built = terminal.file_system;
+
+        for (i in terminal.cwd) {
+            if (i == 0) continue;
+
+            if (terminal.cwd.hasOwnProperty(i)) {
+                for (var possible_folder in path_built) {
+                    if (path_built.hasOwnProperty(possible_folder)) {
+                        if (path_built[possible_folder] === terminal.cwd[i]) {
+                            cwd_string += possible_folder + "/";
+                            path_built = terminal.cwd[i];
+                        }
+
+                        if (cwd_string == "/Users/joshua.diaddigo.com/") {
+                            cwd_string = "~/";
+                        }
+                    }
+                }
+            }
+        }
+
+        cwd_string = (cwd_string == "~/") ? "~" : cwd_string;
+        terminal.cwd_string = cwd_string;
+        terminal.set_prefix("joshua.diaddigo.com:" + cwd_string + " guest$ ");
+    },
+
+    tab_complete: function(partial_path) {
+        var path_items = partial_path.split("/");
+        var partial_item = path_items.pop();
+
+        var directory = terminal.cwd.slice(0);
+        console.log(partial_path);
+
+        for (var i in path_items) {
+            if (path_items.hasOwnProperty(i)) {
+                if (path_items[i] == "") {
+                    if (i == 0) {
+                        directory = [terminal.file_system];
+                    }
+                } else if (path_items[i] == "..") {
+                    if (directory > 1) {
+                        directory.pop();
+                    }
+                } else if (directory[directory.length - 1][path_items[i]] != undefined) {
+                    directory.push(directory[directory.length - 1][path_items[i]]);
+                } else if (path_items[i] == "~") {
+                    directory = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
+                } else if (path_items[i] != ".") {
+                    return;
+                }
+            }
+        }
+
+        directory = directory[directory.length - 1];
+        var possibilities = [];
+        for (var file in directory) {
+            if (directory.hasOwnProperty(file)) {
+                if (file.length > partial_item.length) {
+                    if (file.substr(0, partial_item.length) == partial_item) {
+                        possibilities.push(file);
+                    }
+                }
+            }
+        }
+
+        if (possibilities.length == 1) {
+            jsh.select("#terminal_input_field").js.value += possibilities[0].substr(partial_item.length);
+        }
     },
 
     set_prefix: function(terminal_input_prefix) {
