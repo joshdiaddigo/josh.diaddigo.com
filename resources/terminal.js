@@ -200,6 +200,7 @@ var terminal = {
 
     change_directory: function(path) {
         var path_edits = path.split("/");
+        console.log(path_edits);
 
         for (var i in path_edits) {
             if (path_edits.hasOwnProperty(i)) {
@@ -253,7 +254,6 @@ var terminal = {
         var partial_item = path_items.pop();
 
         var directory = terminal.cwd.slice(0);
-        console.log(partial_path);
 
         for (var i in path_items) {
             if (path_items.hasOwnProperty(i)) {
@@ -262,7 +262,7 @@ var terminal = {
                         directory = [terminal.file_system];
                     }
                 } else if (path_items[i] == "..") {
-                    if (directory > 1) {
+                    if (directory.length > 1) {
                         directory.pop();
                     }
                 } else if (directory[directory.length - 1][path_items[i]] != undefined) {
