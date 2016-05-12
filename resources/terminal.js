@@ -136,7 +136,35 @@ var terminal = {
             var args = input.slice(1);
 
             if (command == "ls") {
-                var folder = terminal.cwd[terminal.cwd.length - 1];
+                if (args[0] == undefined) {
+                    var folder = terminal.cwd[terminal.cwd.length - 1];
+                } else {
+                    var directory = terminal.cwd.slice(0);
+                    var path_items = args[0].split("/");
+
+                    for (i in path_items) {
+                        if (path_items.hasOwnProperty(i)) {
+                            if (path_items[i] == "") {
+                                if (i == 0) {
+                                    directory = [terminal.file_system];
+                                }
+                            } else if (path_items[i] == "..") {
+                                if (directory.length > 1) {
+                                    directory.pop();
+                                }
+                            } else if (directory[directory.length - 1][path_items[i]] != undefined) {
+                                directory.push(directory[directory.length - 1][path_items[i]]);
+                            } else if (path_items[i] == "~") {
+                                directory = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
+                            } else if (path_items[i] != ".") {
+                                return;
+                            }
+                        }
+                    }
+
+                    folder = directory[directory.length - 1];
+                }
+
                 for (var file in folder) {
                     if (folder.hasOwnProperty(file)) {
                         terminal.output("\n" + file);
@@ -200,7 +228,6 @@ var terminal = {
 
     change_directory: function(path) {
         var path_edits = path.split("/");
-        console.log(path_edits);
 
         for (var i in path_edits) {
             if (path_edits.hasOwnProperty(i)) {
