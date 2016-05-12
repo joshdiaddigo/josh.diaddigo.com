@@ -157,6 +157,7 @@ var terminal = {
                             } else if (path_items[i] == "~") {
                                 directory = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
                             } else if (path_items[i] != ".") {
+                                terminal.output("\n-bash: ls: " + path_items[i] + ": No such file or directory");
                                 return;
                             }
                         }
@@ -174,6 +175,8 @@ var terminal = {
                 if (args[0] != undefined) {
                     terminal.change_directory(args[0]);
                 }
+            } else if (command == "open") {
+
             } else if (command == "python") {
                 terminal.output('\nPython 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
                 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin\n\
@@ -242,7 +245,8 @@ var terminal = {
                 } else if (terminal.cwd[terminal.cwd.length - 1][path_edits[i]] != undefined) {
                     terminal.cwd.push(terminal.cwd[terminal.cwd.length - 1][path_edits[i]]);
                 } else if (path_edits[i] == "~") {
-                    terminal.cwd = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users["joshua.diaddigo.com"]];
+                    terminal.cwd = [terminal.file_system, terminal.file_system.Users,
+                        terminal.file_system.Users["joshua.diaddigo.com"]];
                 } else if (path_edits[i] != ".") {
                     terminal.output("\n-bash: cd: " + path_edits[i] + ": No such file or directory")
                 }
