@@ -48,10 +48,14 @@ function setup() {
     }
 
     open_page("home_page");
-    terminal.open();
 }
 
 function open_page(page_div_id) {
+    if (page_div_id == "terminal_page") {
+        terminal.open();
+        return
+    }
+
     if (jsh.select("#" + page_div_id) == undefined) {
         alert("Page does not exist.", "Oops!");
         return;

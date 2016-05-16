@@ -2,7 +2,7 @@ var terminal = {
     setup: function() {
         var terminal_container = document.createElement("div");
         terminal_container.innerHTML = terminal.html;
-        jsh.select("#content").js.appendChild(terminal_container);
+        document.body.insertBefore(terminal_container, document.body.firstChild);
 
         terminal.container_div = jsh.select("#terminal_container");
         terminal.input_prefix_div = jsh.select("#terminal_input_prefix");
