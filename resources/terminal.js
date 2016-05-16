@@ -52,13 +52,16 @@ var terminal = {
             var init_mouse_y = e.pageY;
             var init_window_x = terminal_window.style.left == "" ? 0 : parseInt(terminal_window.style.left);
             var init_window_y = terminal_window.style.top == "" ? 0 : parseInt(terminal_window.style.top);
+            var upper_bound = -(window.innerHeight - jsh.select("#terminal_window").js.clientHeight) / 2;
+
+            document.body.setAttribute("style", "-webkit-user-select: none;");
 
             var listener = function(e) {
                 var dx = init_mouse_x - e.pageX;
                 var dy = init_mouse_y - e.pageY;
 
                 terminal_window.style.left = (init_window_x - dx) + "px";
-                terminal_window.style.top = (init_window_y - dy) + "px";
+                terminal_window.style.top = Math.max(upper_bound, (init_window_y - dy)) + "px";
             };
 
             window.addEventListener("mousemove", listener);
@@ -66,6 +69,7 @@ var terminal = {
             var clear_listeners = function() {
                 window.removeEventListener("mousemove", listener);
                 window.removeEventListener("mouseup", clear_listeners);
+                document.body.setAttribute("style", "");
             };
 
             window.addEventListener("mouseup", clear_listeners);
@@ -174,15 +178,34 @@ var terminal = {
             var command = input[0];
             var args = input.slice(1);
 
-            try {
+            if (terminal.commands[command] != undefined) {
                 terminal.commands[command](args);
-            } catch (e) {
+            } else {
                 terminal.output("\n-bash: " + command + ": command not found");
             }
         }
     },
 
     commands: {
+        cd: function(args) {
+            if (args[0] != undefined) {
+                terminal.change_directory(args[0]);
+            }
+        },
+
+        exit: function(args) {
+            terminal.close();
+        },
+
+        help: function(args) {
+            terminal.output("\nThis is a shell I made with no practical use whatsoever. " +
+                "Some commands that work to varying degrees include:\n");
+
+            for (var command in terminal.commands) {
+                terminal.output("\n" + command);
+            }
+        },
+
         ls: function(args) {
             if (args[0] == undefined) {
                 var folder = terminal.cwd[terminal.cwd.length - 1];
@@ -215,15 +238,7 @@ var terminal = {
             }
 
             for (var file in folder) {
-                if (folder.hasOwnProperty(file)) {
-                    terminal.output("\n" + file);
-                }
-            }
-        },
-
-        cd: function(args) {
-            if (args[0] != undefined) {
-                terminal.change_directory(args[0]);
+                terminal.output("\n" + file);
             }
         },
 
@@ -234,17 +249,6 @@ var terminal = {
 
             terminal.set_prefix(">>> ");
             terminal.python_mode = true;
-        },
-
-        help: function(args) {
-            terminal.output("\nThis is a shell I made with no practical use whatsoever. " +
-                "Some possible commands that work to varying degrees:\n");
-
-            for (var i in terminal.commands) {
-                if (terminal.commands.hasOwnProperty(i)) {
-                    terminal.output("\n" + i);
-                }
-            }
         },
 
         restart: function(args) {
