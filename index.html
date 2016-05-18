@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="./resources/main.css">
     <link rel="stylesheet" type="text/css" href="./resources/terminal.css">
     <link rel="stylesheet" type="text/css" href="./resources/AktivGrotesk.css">
+    <meta media="screen and (max-width: 640px)" name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="Description" content="Stroz Friedberg Summer Associate and CS 1301 Head TA at The Georgia Institute of Technology.">
+    <meta name="google-site-verification" content="iCqSLOHpLSKMQuOHLz7teb3JGKM9KgnTSZa-MnL4kMg">
 </head>
 <body>
     <div id="nav">
@@ -21,20 +24,59 @@
             <div class="nav_item">resume</div>
             <div class="nav_item">terminal</div>
             <div id="right_aligned_buttons">
-                <div class="nav_item">github</div>
-                <div class="nav_item">twitter</div>
-                <div class="nav_item">instagram</div>
+                <div class="nav_item">
+                    <a href="https://github.com/dotjoshua/">github</a>
+                </div>
+                <div class="nav_item">
+                    <a href="https://twitter.com/dotjoshua">twitter</a>
+                </div>
+                <div class="nav_item">
+                    <a href="https://www.instagram.com/dotjoshua/">instagram</a>
+                </div>
             </div>
         </div>
     </div>
     <div id="content">
         <div class="page transparent display_none" id="home_page">
-            <img id="logo" src="resources/logo.svg"/>
+            <img id="logo" src="resources/media/logo.svg"/>
             welcome.
         </div>
-        <div class="page transparent display_none" id="info_page"></div>
-        <div class="page transparent display_none" id="contact_page"></div>
+        <div class="page transparent display_none" id="info_page">
+            <div id="info_page_inner">
+                <div class="title">who am i?</div>
+                <p>My name is Joshua Diaddigo, and I am a senior at the Georgia Institute of Technology. My major is Computer Science and I love it.</p>
+                <div class="title">what do i do?</div>
+                <p>Outside of my coursework, I spend a lot of time developing <a href="https://github.com/cs1301">instructional materials</a> for the course which I am Head TA at Georgia Tech (CS 1301 – intro to computing). I also have an inordinate amount of personal projects in the air at any given time which fill in the gaps in my productivity. Some of my favorites include a sleek blog <a href="https://github.com/dotjoshua/heartheffect.com">content management system</a>, a lightweight <a href="https://github.com/dotjoshua/.jsh">library</a> containing some of my favorite javascript functions, and a <a href="https://github.com/dotjoshua/jasoneating.com">site</a> dedicated to pictures of my buddy, Jason, eating.</p>
+                <div class="title">what experience do i have?</div>
+                <p>I got my first computer when I was 12 years old and immediately fell in love with it. I picked up web design shortly thereafter, and by my sixteenth birthday I was hired by PeachMac (now <a href="http://simplymac.com">Simply Mac</a>) where I became what was likely the youngest certified Apple Product Professional in the world. In the Summer of 2014, I interned with Tipping Point Gaming where I personally took charge of the development of a game selection interface that would soon be distributed to 40% of the casinos in Las Vegas, Nevada. The interface went into testing shortly after I left. I spent the Summer of 2015 in Chicago with <a href="https://www.kcura.com">kCura</a> as a software engineering intern where I worked in the processing vertical of their eDiscovery platform. This Summer I'm in New York City working in digital forensics with <a href="https://www.strozfriedberg.com">Stroz Friedberg</a>. That's the highlight reel, but you can definitely check out my <a href="#resume">resume</a> for a more in depth timeline, or <a href="#contact">contact me</a> if you have any questions.</p>
+                <div class="title">what are my goals?</div>
+                <p>I want to be your CIO.</p>
+                <div class="title">do i ever wear cargo shorts?</div>
+                <p>No.</p>
+            </div>
+        </div>
+        <div class="page transparent display_none" id="contact_page">
+            <span id="contact_node">
+                <div id="contact_node_line"></div>
+            </span>
+            <table>
+                <tr>
+                    <td>email:</td>
+                    <td>joshua@diaddigo.com</td>
+                </tr>
+                <tr>
+                    <td>phone:</td>
+                    <td>(770) 377–4047</td>
+                </tr>
+            </table>
+        </div>
         <div class="page transparent display_none" id="projects_page"></div>
+        <div class="page transparent display_none" id="resume_page">
+            <a href="resources/media/joshua_diaddigo_resume.pdf">
+                <img src="resources/media/resume_icon.svg" width="150"/><br>
+                resume.pdf
+            </a>
+        </div>
     </div>
     <script src="./resources/lib/html2canvas.js"></script>
     <script src="./resources/lib/StackBoxBlur.js"></script>

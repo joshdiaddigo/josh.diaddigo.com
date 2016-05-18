@@ -47,10 +47,15 @@ function setup() {
         });
     }
 
-    open_page("home_page");
+    if ("onhashchange" in window) {
+        window.addEventListener("hashchange", on_hash_change);
+    }
+    on_hash_change();
 }
 
 function open_page(page_div_id) {
+    console.log(page_div_id);
+
     if (page_div_id == "terminal_page") {
         terminal.open();
         return
@@ -70,6 +75,7 @@ function open_page(page_div_id) {
     var pages = jsh.select(".page");
     for (var i in pages) {
         pages[i].add_class("transparent");
+        pages[i].remove_class(pages[i].js.id + "_loading");
     }
 
     setTimeout(function() {
@@ -79,6 +85,7 @@ function open_page(page_div_id) {
         }
 
         jsh.select("#" + page_div_id).remove_class("display_none");
+        jsh.select("#" + page_div_id).add_class(page_div_id + "_loading");
         setTimeout(function() {
             jsh.select("#" + page_div_id).remove_class("transparent");
         }, 10);
@@ -88,6 +95,7 @@ function open_page(page_div_id) {
 }
 
 function on_hash_change() {
+    console.log(location.href);
     if (location.href.indexOf('#') != -1) {
         open_page(location.href.substring(location.href.indexOf("#") + 1) + "_page");
     } else {

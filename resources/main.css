@@ -9,6 +9,11 @@ html, body {
     width: 100%;
 }
 
+.page.transparent {
+    transform: translateX(-25%);
+    filter: blur(5px);
+}
+
 #content {
     width: 100%;
     height: 100%;
@@ -31,9 +36,74 @@ html, body {
     align-items: center;
 }
 
+#contact_page, #resume_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 800;
+}
+
+#resume_page a {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#contact_page table tr td {
+    min-width: 75px;
+}
+
+#contact_node {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #a00;
+    margin-right: 10px;
+}
+
+#contact_node_line {
+    height: 3px;
+    width: 100%;
+    background: #a00;
+    position: absolute;
+    margin-left: -100%;
+    margin-top: 8px;
+}
+
+#info_page_inner {
+    width: 100%;
+    max-width: 1000px;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 800;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+#info_page_inner a {
+    color: #f00;
+    text-decoration: none;
+}
+
+#info_page_inner a:hover {
+    color: #a00;
+}
+
+#info_page_inner .title {
+    margin-top: 50px;
+    color: #aaa;
+    font-weight: 800;
+    font-size: 26px;
+    border-bottom: 1px solid #700;
+    text-align: right;
+}
+
 #nav {
     width: 100%;
-    animation: nav-in 1s;
+    animation: nav_in 1s;
     position: fixed;
 }
 
@@ -58,15 +128,19 @@ html, body {
     cursor: pointer;
     display: inline-block;
 }
+.nav_item:hover, .nav_item a:hover {
+    color: #a00;
+    transition: 0.5s;
+}
+
+.nav_item a {
+    text-decoration: none;
+    color: #ddd;
+}
 
 @keyframes nav-in {
     0% {transform: translateY(-100%)}
     100% {transform: translateY(0)}
-}
-
-.nav_item:hover {
-    color: #a00;
-    transition: 0.5s;
 }
 
 #jsh_alert_title {

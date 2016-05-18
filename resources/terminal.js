@@ -242,6 +242,14 @@ var terminal = {
             }
         },
 
+        open: function(args) {
+            if (args[0] == undefined) {
+                terminal.output("\nUsage: open page_name");
+            } else {
+                open_page(args[0] + "_page");
+            }
+        },
+
         python: function(args) {
             terminal.output('\nPython 2.7.6 (v2.7.6:3a1db0d2747e, Nov 10 2013, 00:42:54) \n\
                 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin\n\
