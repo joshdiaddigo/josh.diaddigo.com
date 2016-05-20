@@ -108,10 +108,24 @@ html, body {
     text-align: justify;
 }
 
+#info_image {
+    width: 100%;
+    height: 300px;
+    background: url(media/joshua_diaddigo.jpg) 0 30%;
+    background-size: cover;
+    border-top: 1px solid #a00;
+    border-bottom: 1px solid #a00;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    margin-top: 30px;
+}
+
 #nav {
     width: 100%;
     animation: nav_in 1s;
     position: fixed;
+    background: rgba(34, 34, 34, 0.7);
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 #nav_inner {
@@ -148,31 +162,6 @@ html, body {
 @keyframes nav-in {
     0% {transform: translateY(-100%)}
     100% {transform: translateY(0)}
-}
-
-#jsh_alert_title {
-    color: #a00;
-}
-
-.jsh_alert_button:hover {
-    color: #a00;
-}
-
-#jsh_alert_window {
-    background: #aaa no-repeat;
-    background-size: auto;
-    overflow: hidden;
-    border: 1px solid rgba(100, 200, 255, 0.2);
-    border-radius: 5px;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
-    transition: background-image 5s;
-    position: relative;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-#jsh_alert_container {
-    background-color: rgba(30, 30, 30, 0.4);
 }
 
 .transparent {

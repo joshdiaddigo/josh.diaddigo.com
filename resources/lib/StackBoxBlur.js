@@ -205,9 +205,9 @@ function stackBoxBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius, it
                 if ( pa > 0 )
                 {
                     pa = 255 / pa;
-                    pixels[p]   = Math.min(Math.max(((r_sum * mul_sum) >>> shg_sum ) * pa + 50, 100), 255);
-                    pixels[p+1] = Math.min(Math.max(((g_sum * mul_sum) >>> shg_sum ) * pa + 50, 100), 255);
-                    pixels[p+2] = Math.min(Math.max(((b_sum * mul_sum) >>> shg_sum ) * pa + 50, 100), 255);
+                    pixels[p]   = ((r_sum * mul_sum) >>> shg_sum ) * pa;
+                    pixels[p+1] = ((g_sum * mul_sum) >>> shg_sum ) * pa;
+                    pixels[p+2] = ((b_sum * mul_sum) >>> shg_sum ) * pa;
                 } else {
                     pixels[p] = pixels[p+1] = pixels[p+2] = 0
                 }
