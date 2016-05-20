@@ -54,8 +54,6 @@ function setup() {
 }
 
 function open_page(page_div_id) {
-    console.log(page_div_id);
-
     if (page_div_id == "terminal_page") {
         terminal.open();
         return
@@ -95,7 +93,6 @@ function open_page(page_div_id) {
 }
 
 function on_hash_change() {
-    console.log(location.href);
     if (location.href.indexOf('#') != -1) {
         open_page(location.href.substring(location.href.indexOf("#") + 1) + "_page");
     } else {
