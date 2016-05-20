@@ -93,12 +93,19 @@ html, body {
 }
 
 #info_page_inner .title {
-    margin-top: 50px;
+    margin-top: 75px;
     color: #aaa;
     font-weight: 800;
     font-size: 26px;
-    border-bottom: 1px solid #700;
-    text-align: right;
+    border-left: 2px solid #700;
+    padding-left: 15px;
+}
+
+#info_page_inner p {
+    padding-left: 15px;
+    box-sizing: border-box;
+    border-left: 2px solid #777;
+    text-align: justify;
 }
 
 #nav {
