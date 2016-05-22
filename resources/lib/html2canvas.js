@@ -549,8 +549,8 @@ function cloneNode(node, javascriptEnabled) {
     }
 
     if (node.nodeType === 1) {
-        clone._scrollTop = node.scrollTop;
-        clone._scrollLeft = node.scrollLeft;
+        clone._scrollTop = node == window ? 0 : node.scrollTop;
+        clone._scrollLeft = node == window ? 0 : node.scrollLeft;
         if (node.nodeName === "CANVAS") {
             cloneCanvasContents(node, clone);
         } else if (node.nodeName === "TEXTAREA" || node.nodeName === "SELECT") {

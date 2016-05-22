@@ -53,6 +53,7 @@ function open_page(page_div_id) {
 
     var pages = jsh.select(".page");
     for (var i in pages) {
+        if (!pages.hasOwnProperty(i)) continue;
         pages[i].add_class("transparent");
         pages[i].remove_class(pages[i].js.id + "_loading");
     }
@@ -60,6 +61,7 @@ function open_page(page_div_id) {
     setTimeout(function() {
         var pages = jsh.select(".page");
         for (var i in pages) {
+            if (!pages.hasOwnProperty(i)) continue;
             pages[i].add_class("display_none");
         }
 
@@ -68,6 +70,10 @@ function open_page(page_div_id) {
         setTimeout(function() {
             jsh.select("#" + page_div_id).remove_class("transparent");
         }, 10);
+
+        setTimeout(function() {
+            window.dispatchEvent(new Event('page_opened'));
+        }, 500);
     }, 500);
 
     window.location.hash = page_div_id.substring(0, page_div_id.length - 5);

@@ -2,6 +2,7 @@ var alert_window;
 
 function alert_setup() {
     jsh.select("#jsh_alert_container").js.setAttribute("data-html2canvas-ignore", "true");
+    jsh.select("#nav").js.setAttribute("data-html2canvas-ignore", "true");
     alert_window = jsh.select("#jsh_alert_window").js;
 
     jsh.select("#jsh_alert_window").js.addEventListener("mousedown", function(e) {
@@ -43,10 +44,14 @@ function alert_setup() {
 
         update_alert_pos(scroll_alert_window_bounds);
     });
+
+    window.addEventListener("page_opened", function() {
+        update_alert_bg();
+    });
 }
 
 function alert(message, title, args) {
-    update_alert_bg();
+    jsh.select("#nav").js.style.transform = "translateY(-100%)";
 
     args = args == undefined ? {} : args;
 
@@ -54,9 +59,13 @@ function alert(message, title, args) {
     args.cancel_callback = (args.cancel_callback == undefined) ? function() {close_alert();} : args.cancel_callback;
 
     jsh.alert.open(message, title, args);
+
+    update_alert_pos();
 }
 
 function close_alert() {
+    jsh.select("#nav").js.style.transform = "translateY(0)";
+
     setTimeout(function() {
         alert_window.style.left = alert_window.style.top = "0px";
         update_alert_bg();
@@ -73,7 +82,7 @@ window.addEventListener("resize", function() {
 
 function update_alert_bg() {
     html2canvas(document.body, {async: true}).then(function(canvas) {
-        stackBoxBlurCanvasRGBA(canvas, 10, 10, canvas.width, canvas.height, 10, 2);
+        stackBoxBlurCanvasRGBA(canvas, 0, 0, canvas.width, canvas.height, 10, 2);
         alert_window.style.backgroundImage = "url('" + canvas.toDataURL() + "')";
         update_alert_pos();
     });
