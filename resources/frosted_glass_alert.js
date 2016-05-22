@@ -29,10 +29,24 @@ function alert_setup() {
 
         window.addEventListener("mouseup", clear_listeners);
     });
+
+    var scroll_alert_window_bounds = alert_window.getBoundingClientRect();
+    var update_scroll_alert_window_bounds = true;
+    window.addEventListener("scroll", function() {
+        if (update_scroll_alert_window_bounds) {
+            scroll_alert_window_bounds = alert_window.getBoundingClientRect();
+            update_scroll_alert_window_bounds = false;
+            setTimeout(function() {
+                update_scroll_alert_window_bounds = true;
+            }, 500);
+        }
+
+        update_alert_pos(scroll_alert_window_bounds);
+    });
 }
 
 function alert(message, title, args) {
-    setTimeout(update_alert_bg, 100);
+    update_alert_bg();
 
     args = args == undefined ? {} : args;
 
@@ -65,7 +79,7 @@ function update_alert_bg() {
     });
 }
 
-function update_alert_pos() {
-    var bounds = alert_window.getBoundingClientRect();
-    alert_window.style.backgroundPosition = (-bounds.left - 11) + "px " + (-bounds.top - 11) + "px";
+function update_alert_pos(bounds) {
+    bounds = bounds == undefined ? alert_window.getBoundingClientRect() : bounds;
+    alert_window.style.backgroundPosition = (-bounds.left - window.scrollX) + "px " + (-bounds.top - window.scrollY) + "px";
 }

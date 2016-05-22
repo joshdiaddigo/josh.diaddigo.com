@@ -2,6 +2,12 @@
     color: #a00;
 }
 
+.jsh_alert_button {
+    color: #888;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+
 .jsh_alert_button:hover {
     color: #a00;
 }
@@ -12,11 +18,20 @@
     overflow: hidden;
     border: 1px solid #666;
     border-radius: 5px;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
     transition: background-image 1s;
     position: relative;
     -webkit-user-select: none;
     user-select: none;
+}
+
+#jsh_alert_message {
+    font-weight: 800;
+    color: #fff;
+}
+
+#jsh_alert_title {
+    font-family: sans-serif;
+    font-weight: 400;
 }
 
 #jsh_alert_container {

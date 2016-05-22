@@ -43,6 +43,11 @@ var shg_table = [0,9,10,11,9,12,10,11,12,9,13,13,10,9,13,13,14,14,14,14,10,13,14
 
 function stackBoxBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius, iterations )
 {
+    top_x -= 10;
+    top_y -= 10;
+    height += 10;
+    width += 10;
+
     if ( isNaN(radius) || radius < 1 ) return;
     radius |= 0;
 
