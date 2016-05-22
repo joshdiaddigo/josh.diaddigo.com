@@ -68,12 +68,12 @@ function close_alert() {
 
     setTimeout(function() {
         alert_window.style.left = alert_window.style.top = "0px";
-        update_alert_bg();
     }, 500);
 
     jsh.alert.close();
 }
 
+var refresh_render_timeout;
 window.addEventListener("resize", function() {
     update_alert_pos();
     clearTimeout(refresh_render_timeout);

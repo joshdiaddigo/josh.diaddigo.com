@@ -549,8 +549,8 @@ function cloneNode(node, javascriptEnabled) {
     }
 
     if (node.nodeType === 1) {
-        clone._scrollTop = node == window ? 0 : node.scrollTop;
-        clone._scrollLeft = node == window ? 0 : node.scrollLeft;
+        clone._scrollTop = node == document.body ? 0 : node.scrollTop;
+        clone._scrollLeft = node == document.body ? 0 : node.scrollLeft;
         if (node.nodeName === "CANVAS") {
             cloneCanvasContents(node, clone);
         } else if (node.nodeName === "TEXTAREA" || node.nodeName === "SELECT") {
@@ -563,8 +563,8 @@ function cloneNode(node, javascriptEnabled) {
 
 function initNode(node) {
     if (node.nodeType === 1) {
-        node.scrollTop = node._scrollTop;
-        node.scrollLeft = node._scrollLeft;
+        node.scrollTop = node == document.body ? 0 : node._scrollTop;
+        node.scrollLeft = node == document.body ? 0 : node._scrollLeft;
 
         var child = node.firstChild;
         while(child) {
