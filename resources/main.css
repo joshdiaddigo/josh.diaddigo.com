@@ -3,6 +3,15 @@ html, body {
     font-family: AktivGroteskLight, sans-serif;
 }
 
+a {
+    color: #f00;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #a00;
+}
+
 .page {
     transition: 0.5s;
     height: 100%;
@@ -54,21 +63,14 @@ html, body {
     min-width: 75px;
 }
 
-#contact_node {
-    height: 20px;
-    width: 20px;
+#contact_image {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    background: url(media/joshua_diaddigo_contact.jpg);
+    background-size: cover;
     border: 3px solid #a00;
-    margin-right: 10px;
-}
-
-#contact_node_line {
-    height: 3px;
-    width: 100%;
-    background: #a00;
-    position: absolute;
-    margin-left: -100%;
-    margin-top: 8px;
+    margin-right: 15px;
 }
 
 #info_page_inner {
@@ -82,15 +84,6 @@ html, body {
     box-sizing: border-box;
 }
 
-#info_page_inner a {
-    color: #f00;
-    text-decoration: none;
-}
-
-#info_page_inner a:hover {
-    color: #a00;
-}
-
 #info_page_inner .title {
     margin-top: 75px;
     color: #aaa;
@@ -102,12 +95,11 @@ html, body {
 
 #info_page_inner p {
     padding-left: 15px;
+    padding-right: 17px;
     box-sizing: border-box;
     border-left: 2px solid #777;
     text-align: justify;
 }
-
-
 
 #info_image_container {
     width: 100%;
