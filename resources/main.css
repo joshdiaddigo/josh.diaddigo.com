@@ -107,29 +107,24 @@ html, body {
     text-align: justify;
 }
 
-#info_image:before {
+
+
+#info_image_container {
     width: 100%;
-    height: 300px;
-    background: url(media/joshua_diaddigo.jpg) 0 30%;
+    height: 400px;
+    background: #111;
+}
+
+#info_image {
+    width: 100%;
+    height: 400px;
+    background: url(media/joshua_diaddigo.jpg) 0 35%;
     background-size: cover;
     border-top: 1px solid #a00;
     border-bottom: 1px solid #a00;
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
-    margin-top: 30px;
-}
-
-.parallax_image {
-    width: 100%;
-    height: 300px;
-}
-
-.parallax_image:before {
-    content: "";
-    height: 300px;
-    width: 100%;
     position: absolute;
     left: 0;
-    background: #111;
 }
 
 #nav {

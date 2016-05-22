@@ -1,3 +1,7 @@
+#nav {
+    transition: 0.5s;
+}
+
 #jsh_alert_title {
     color: #a00;
 }

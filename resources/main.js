@@ -20,12 +20,7 @@ function setup() {
     }
 
     window.addEventListener("scroll", function() {
-        var scrollTop = ((window.scrollY / 10) + 30) + "%";
-        var parallax_images = jsh.select(".parallax_image");
-        for (var i in parallax_images) {
-            if (!parallax_images.hasOwnProperty(i)) continue;
-            parallax_images[i].js.style.backgroundPositionY = scrollTop;
-        }
+        jsh.select("#info_image").js.style.backgroundPositionY = (-(window.scrollY / 15) + 35) + "%";
     });
 
     if ("onhashchange" in window) {
