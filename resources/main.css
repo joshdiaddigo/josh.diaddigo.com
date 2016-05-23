@@ -66,6 +66,7 @@ a:hover {
 
 #contact_image {
     width: 200px;
+    min-width: 200px;
     height: 200px;
     border-radius: 50%;
     background: url(media/joshua_diaddigo_contact.jpg);
