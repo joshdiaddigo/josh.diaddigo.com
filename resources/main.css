@@ -56,6 +56,8 @@ a:hover {
     font-size: 18px;
     text-decoration: none;
     text-align: center;
+    font-family: sans-serif;
+    font-weight: 200;
 }
 
 #contact_page table tr td {
@@ -68,11 +70,12 @@ a:hover {
     border-radius: 50%;
     background: url(media/joshua_diaddigo_contact.jpg);
     background-size: cover;
-    border: 3px solid #a00;
+    border: 2px solid #a00;
     margin-right: 15px;
 }
 
-#info_page_inner {
+#info_page_inner,
+#projects_page_inner {
     width: 100%;
     max-width: 1000px;
     color: #fff;
@@ -83,7 +86,8 @@ a:hover {
     box-sizing: border-box;
 }
 
-#info_page_inner .title {
+#info_page_inner .title,
+#projects_page_inner .title {
     margin-top: 75px;
     color: #aaa;
     font-weight: 800;
@@ -92,7 +96,8 @@ a:hover {
     padding-left: 15px;
 }
 
-#info_page_inner p {
+#info_page_inner p,
+#projects_page_inner p {
     padding-left: 15px;
     padding-right: 17px;
     box-sizing: border-box;
@@ -116,6 +121,30 @@ a:hover {
     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
     position: absolute;
     left: 0;
+}
+
+#project_page_header {
+    text-align: center;
+    margin-top: 70px;
+    color: #666;
+    font-size: 28px;
+}
+
+.projects_page_github_link {
+    font-size: 14px;
+}
+
+.projects_page_image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    cursor: pointer;
+    margin-top: 10px;
+    border: 1px solid #a00;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: height 0.5s;
 }
 
 #nav {

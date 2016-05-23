@@ -44,10 +44,6 @@ function alert_setup() {
 
         update_alert_pos(scroll_alert_window_bounds);
     });
-
-    window.addEventListener("page_opened", function() {
-        update_alert_bg();
-    });
 }
 
 function alert(message, title, args) {
@@ -60,7 +56,7 @@ function alert(message, title, args) {
 
     jsh.alert.open(message, title, args);
 
-    update_alert_pos();
+    update_alert_bg();
 }
 
 function close_alert() {

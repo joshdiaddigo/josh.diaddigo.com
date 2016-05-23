@@ -1,4 +1,3 @@
-var refresh_render_timeout;
 var current_page;
 
 window.onload = function() {
@@ -16,6 +15,18 @@ function setup() {
         if (!nav_items.hasOwnProperty(i)) continue;
         nav_items[i].js.addEventListener("click", function(e) {
             open_page(e.target.innerHTML + "_page");
+        });
+    }
+
+    var project_images = jsh.select(".projects_page_image");
+    for (i in project_images) {
+        if (!project_images.hasOwnProperty(i)) continue;
+        project_images[i].js.addEventListener("click", function(e) {
+            var height = e.target.clientHeight;
+            var width = e.target.clientWidth;
+            var ratio = e.target.naturalWidth / e.target.naturalHeight;
+
+            e.target.style.height = (height == 250) ? (width / ratio) + "px" : "250px";
         });
     }
 
