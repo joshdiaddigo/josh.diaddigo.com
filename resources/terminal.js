@@ -213,7 +213,7 @@ var terminal = {
                 var directory = terminal.cwd.slice(0);
                 var path_items = args[0].split("/");
 
-                for (i in path_items) {
+                for (var i in path_items) {
                     if (path_items.hasOwnProperty(i)) {
                         if (path_items[i] == "") {
                             if (i == 0) {
