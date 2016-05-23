@@ -52,7 +52,7 @@ var terminal = {
             var init_mouse_y = e.pageY;
             var init_window_x = terminal_window.style.left == "" ? 0 : parseInt(terminal_window.style.left);
             var init_window_y = terminal_window.style.top == "" ? 0 : parseInt(terminal_window.style.top);
-            var upper_bound = -(window.innerHeight - jsh.select("#terminal_window").js.clientHeight) / 2;
+            var upper_bound = -(window.innerHeight - jsh.select("#terminal_window").js.clientHeight) / 2 + 40;
 
             document.body.setAttribute("style", "-webkit-user-select: none;");
 
