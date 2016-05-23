@@ -46,6 +46,23 @@ function open_page(page_div_id) {
         return
     }
 
+    if (page_div_id == "404_page") {
+        setTimeout(function() {
+            alert("I have no idea where that page went, so I'm taking you back home. Sorry about that.", "Oops!", {button_text: "no worries, dude"});
+        }, 1000);
+        return open_page("home_page");
+    } else if (page_div_id == "403_page") {
+        setTimeout(function() {
+            alert("You don't have permission to view this page. " +
+                "If you're looking for a way to hack me, " +
+                "I would recommend browsing through the " +
+                "<a href=\"https://github.com/dotjoshua/joshua.diaddigo.com\">source code</a> " +
+                "of this website for a vulnerability.",
+                "Hm...", {button_text: "cool, thanks"});
+        }, 1000);
+        return open_page("home_page");
+    }
+
     if (jsh.select("#" + page_div_id) == undefined) {
         alert("Page does not exist.", "Oops!");
         return;
