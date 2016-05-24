@@ -2,7 +2,7 @@
 
 function query($sql, $db_passwd, $no_response) {
     $servername = "localhost";
-    $username = "ruffles_joshua";
+    $username = "ruffles_jenson";
     $db_name = "ruffles_jenson";
 
     $conn = new mysqli($servername, $username, $db_passwd, $db_name);
