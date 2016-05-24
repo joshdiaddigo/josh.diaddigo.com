@@ -50,12 +50,12 @@ function make_call() {
     file_put_contents("message.txt", $message);
 
     global $DB_PASSWORD;
-    $destination = json_decode(query("SELECT number FROM jenson_contacts WHERE name='".$name."';", $DB_PASSWORD, false));
+    $destination = query("SELECT number FROM jenson_contacts WHERE name='".$name."';", $DB_PASSWORD, false);
 
     if (count($destination) == 0) {
-        return "I do not have ".$name."'s number.'";
+        return "I do not have ".$name."'s number.";
     } else {
-        $destination = $destination[0];
+        $destination = $destination[0]["number"];;
     }
 
     global $TWILIO_ACCOUNT_SID, $TWILIO_AUTH_TOKEN;
