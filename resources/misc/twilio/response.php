@@ -11,27 +11,27 @@ $sms = $xml->addChild("Sms", $reply);
 Header('Content-type: text/xml');
 print($xml->asXML());
 
-function sanitize_input($data) {
-    $data =  preg_replace("/[^A-Za-z0-9+ .]*/", "", $data);
+function sanitize_input($data, $exceptions) {
+    $data =  preg_replace("/[^A-Za-z0-9+ .".$exceptions."]*/", "", $data);
     $data = trim($data);
     $data = htmlspecialchars($data);
     return substr($data, 0, 5000);
 }
 
 function get_response() {
-    if (sanitize_input( $_POST["From"] ) == "+16789361764") {
-        if (sanitize_input($_POST["NumMedia"]) > 0) {
+    if (sanitize_input($_POST["From"], "") == "+16789361764") {
+        if (sanitize_input($_POST["NumMedia"], "") > 0) {
             return upload_sphere_photo();
         } else {
             return "Good day, Daniel.";
         }
-    } else if (sanitize_input( $_POST["From"] ) == "+17703774047") {
-        if (strtolower(substr(sanitize_input($_POST["Body"]), 0, 4)) == "post") {
+    } else if (sanitize_input( $_POST["From"], "") == "+17703774047") {
+        if (strtolower(substr(sanitize_input($_POST["Body"], ""), 0, 4)) == "post") {
             return post_jason_eating_photo();
-        } else if (strtolower(substr(sanitize_input($_POST["Body"]), 0, 4)) == "tell") {
+        } else if (strtolower(substr(sanitize_input($_POST["Body"], ""), 0, 4)) == "tell") {
             return make_call();
-        } else if (count(explode(" ", sanitize_input($_POST["Body"]))) > 3
-                && strtolower(explode(" ", sanitize_input($_POST["Body"]))[1]) == "number") {
+        } else if (count(explode(" ", sanitize_input($_POST["Body"], ""))) > 3
+                && strtolower(explode(" ", sanitize_input($_POST["Body"], ""))[1]) == "number") {
             return save_number();
         } else {
             return "Good day, Joshua.";
@@ -43,7 +43,7 @@ function get_response() {
 }
 
 function make_call() {
-    $messageArray = explode(" ", sanitize_input($_POST["Body"]));
+    $messageArray = explode(" ", sanitize_input($_POST["Body"], ""));
     $name = strtolower($messageArray[1]);
     $message = implode(" ", array_slice($messageArray, 2));
 
@@ -76,7 +76,7 @@ function make_call() {
 }
 
 function upload_sphere_photo() {
-    switch (sanitize_input($_POST["MediaContentType0"])) {
+    switch (sanitize_input($_POST["MediaContentType0"], "")) {
         case "image/png":
             $extension = ".png";
             break;
@@ -95,13 +95,13 @@ function upload_sphere_photo() {
 
     $filename = base_convert(strval(time()), 10, 36);
     file_put_contents( "../../sphere.is/a/" . $filename . $extension,
-        fopen(sanitize_input($_POST["MediaUrl0"]), "r"));
+        fopen(sanitize_input($_POST["MediaUrl0"], ""), "r"));
 
     return "Nice photo! Here's the image name:\n\n" . $filename . $extension;
 }
 
 function post_jason_eating_photo() {
-    $messageArray = explode(" ", sanitize_input($_POST["Body"]));
+    $messageArray = explode(" ", sanitize_input($_POST["Body"], ""));
     $filename = $messageArray[1];
 
     try {
@@ -113,7 +113,7 @@ function post_jason_eating_photo() {
 }
 
 function save_number() {
-    $name = explode(" ", sanitize_input($_POST["Body"]))[0];
+    $name = explode(" ", sanitize_input($_POST["Body"], "'’"))[0];
 
     if (strpos($name, "’") !== false) {
         $name = substr($name, 0, strpos($name, "’"));
@@ -123,7 +123,7 @@ function save_number() {
         return "I'm sorry, sir, I didn't get the name.";
     }
 
-    $number = explode(" ", sanitize_input($_POST["Body"]))[3];
+    $number = explode(" ", sanitize_input($_POST["Body"], ""))[3];
 
     global $DB_PASSWORD;
     query("INSERT INTO jenson_contacts VALUES ('".$name."', '".$number."');", $DB_PASSWORD, true);
