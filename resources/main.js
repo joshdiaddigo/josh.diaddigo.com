@@ -55,6 +55,11 @@ function open_page(page_div_id) {
         return
     }
 
+    var nav = jsh.select("#nav");
+    if (nav.js.classList.contains("show_nav")) {
+        nav.remove_class("show_nav");
+    }
+
     if (page_div_id == "404_page") {
         setTimeout(function() {
             alert("I have no idea where that page went, so I'm taking you back home. Sorry about that.", "Oops!", {button_text: "no worries, dude"});
