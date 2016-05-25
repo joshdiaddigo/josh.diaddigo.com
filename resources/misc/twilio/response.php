@@ -5,11 +5,13 @@ require_once "./auth.php";
 require_once "database.php";
 
 $xml = new SimpleXMLElement('<Response/>');
+set_error_handler("warning_handler", E_WARNING);
 try {
     $reply = get_response();
 } catch (Exception $ex) {
     $reply = "I've encountered an error:\n\n".$ex->getMessage();
 }
+restore_error_handler();
 $sms = $xml->addChild("Sms", $reply);
 
 print($xml->asXML());
@@ -34,10 +36,10 @@ function get_response() {
         } else if (strtolower(substr(sanitize_input($_POST["Body"], ""), 0, 4)) == "tell") {
             return make_call();
         } else if (count(explode(" ", sanitize_input($_POST["Body"], ""))) > 3
-                && strtolower(explode(" ", sanitize_input($_POST["Body"], ""))[1]) == "number") {
+            && strtolower(explode(" ", sanitize_input($_POST["Body"], ""))[1]) == "number") {
             return save_number();
         } else {
-            return "Good day, Joshua.";
+            return "Good day, Joshua.".fopen("hey", "r");
         }
 
     } else {
@@ -109,7 +111,7 @@ function post_jason_eating_photo() {
     $filename = $messageArray[1];
 
     try {
-        rename("../../../../jasoneating.com/uploaded_images/".$filename, "../../jasoneating.com/images/".$filename);
+        rename("../../../../jasoneating.com/uploaded_images/".$filename, "../../../../jasoneating.com/images/".$filename);
         return "I've published the photo for you.";
     } catch (Exception $ex) {
         return "That's not an image that I have access to.";
@@ -137,4 +139,9 @@ function save_number() {
 
 function get_other_response() {
     return "Hello, I am Jenson – Joshua Diaddigo's automated assistant.";
+}
+
+function warning_handler($errno, $errstr) {
+    global $xml;
+    $xml->addChild("Sms","I just encountered the following warning:\n\n".$errstr);
 }
