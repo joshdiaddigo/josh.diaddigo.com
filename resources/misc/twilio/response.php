@@ -76,7 +76,7 @@ function make_call() {
             "StatusCallbackEvent" => array("no-answer", "completed"),
     ));
 
-    return "I'll let ".$name." know.'";
+    return "I'll let ".$name." know.";
 }
 
 function upload_sphere_photo() {
