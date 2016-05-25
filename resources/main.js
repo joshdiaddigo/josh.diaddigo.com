@@ -14,7 +14,10 @@ function setup() {
     for (var i in nav_items) {
         if (!nav_items.hasOwnProperty(i)) continue;
         nav_items[i].js.addEventListener("click", function(e) {
-            open_page(e.target.innerHTML + "_page");
+            if (e.target.parentNode.tagName.toLowerCase() != "a") {
+                open_page(e.target.innerHTML + "_page");
+            }
+            move_mobile_tray(true);
         });
     }
 
@@ -30,13 +33,8 @@ function setup() {
         });
     }
 
-    jsh.select("#mobile_nav_button").js.addEventListener("click", function(e) {
-        var nav = jsh.select("#nav");
-        if (nav.js.classList.contains("show_nav")) {
-            nav.remove_class("show_nav");
-        } else {
-           nav.add_class("show_nav");
-        }
+    jsh.select("#mobile_nav_button").js.addEventListener("click", function() {
+        move_mobile_tray();
     });
 
     window.addEventListener("scroll", function() {
@@ -53,11 +51,6 @@ function open_page(page_div_id) {
     if (page_div_id == "terminal_page") {
         terminal.open();
         return
-    }
-
-    var nav = jsh.select("#nav");
-    if (nav.js.classList.contains("show_nav")) {
-        nav.remove_class("show_nav");
     }
 
     if (page_div_id == "404_page") {
@@ -121,5 +114,14 @@ function on_hash_change() {
         open_page(location.href.substring(location.href.indexOf("#") + 1) + "_page");
     } else {
         open_page("home_page");
+    }
+}
+
+function move_mobile_tray(close) {
+    var nav = jsh.select("#nav");
+    if (nav.js.classList.contains("show_nav")) {
+        nav.remove_class("show_nav");
+    } else if (!close) {
+        nav.add_class("show_nav");
     }
 }

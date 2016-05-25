@@ -29,6 +29,10 @@
         padding: 10px 10px 10px 20px;
         border: 1px solid #222;
     }
+
+    a .nav_item {
+        border-color: #222;
+    }
     
     .nav_item:hover {
         background: #222;
