@@ -10,6 +10,7 @@ class Services_Twilio_Rest_Account extends Services_Twilio_InstanceResource {
             'calls',
             'conferences',
             'incoming_phone_numbers',
+            'keys',
             'media',
             'messages',
             'notifications',
@@ -17,13 +18,15 @@ class Services_Twilio_Rest_Account extends Services_Twilio_InstanceResource {
             'recordings',
             'sms_messages',
             'short_codes',
+            'tokens',
             'transcriptions',
             'connect_apps',
             'authorized_connect_apps',
             'usage_records',
             'usage_triggers',
             'queues',
-            'sip'
+            'sip',
+            'addresses'
         );
 
         $this->sandbox = new Services_Twilio_Rest_Sandbox(

@@ -49,5 +49,20 @@ class Services_Twilio_Rest_Message extends Services_Twilio_InstanceResource {
             'media'
         );
     }
+
+    public function redact() {
+        $postParams = array('Body' => '');
+        self::update($postParams);
+    }
+
+    /**
+     * Make a request to delete the specified resource.
+     *
+     * :rtype: boolean
+     */
+    public function delete()
+    {
+        return $this->client->deleteData($this->uri);
+    }
 }
 
