@@ -12,7 +12,6 @@ try {
 }
 $sms = $xml->addChild("Sms", $reply);
 
-Header('Content-type: text/xml');
 print($xml->asXML());
 
 function sanitize_input($data, $exceptions) {
@@ -74,13 +73,14 @@ function make_call() {
             "StatusCallback" => "https://joshua.diaddigo.com/resources/misc/twilio/call_complete.php",
             "StatusCallbackMethod" => "POST",
             "StatusCallbackEvent" => array("no-answer", "completed"),
-    ));
+        )
+    );
 
     return "I'll let ".$name." know.";
 }
 
 function upload_sphere_photo() {
-    switch (sanitize_input($_POST["MediaContentType0"], "")) {
+    switch (sanitize_input($_POST["MediaContentType0"], "\/")) {
         case "image/png":
             $extension = ".png";
             break;
@@ -94,12 +94,12 @@ function upload_sphere_photo() {
             $extension = ".tiff";
             break;
         default:
-            return "That's not a media type that I can accept.";
+            return sanitize_input($_POST["MediaContentType0"], "")."? That's not a media type that I can accept.";
     }
 
     $filename = base_convert(strval(time()), 10, 36);
-    file_put_contents( "../../sphere.is/a/" . $filename . $extension,
-        fopen(sanitize_input($_POST["MediaUrl0"], ""), "r"));
+    file_put_contents( "../../../../sphere.is/a/" . $filename . $extension,
+        fopen(sanitize_input($_POST["MediaUrl0"], ":\/\-"), "r"));
 
     return "Nice photo! Here's the image name:\n\n" . $filename . $extension;
 }
@@ -109,7 +109,7 @@ function post_jason_eating_photo() {
     $filename = $messageArray[1];
 
     try {
-        rename("../../jasoneating.com/uploaded_images/".$filename, "../../jasoneating.com/images/".$filename);
+        rename("../../../../jasoneating.com/uploaded_images/".$filename, "../../jasoneating.com/images/".$filename);
         return "I've published the photo for you.";
     } catch (Exception $ex) {
         return "That's not an image that I have access to.";
