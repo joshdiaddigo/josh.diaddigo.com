@@ -39,7 +39,7 @@ function get_response() {
             && strtolower(explode(" ", sanitize_input($_POST["Body"], ""))[1]) == "number") {
             return save_number();
         } else {
-            return "Good day, Joshua.".fopen("hey", "r");
+            return "Good day, Joshua.";
         }
 
     } else {
