@@ -30,6 +30,15 @@ function setup() {
         });
     }
 
+    jsh.select("#mobile_nav_button").js.addEventListener("click", function(e) {
+        var nav = jsh.select("#nav");
+        if (nav.js.classList.contains("show_nav")) {
+            nav.remove_class("show_nav");
+        } else {
+           nav.add_class("show_nav");
+        }
+    });
+
     window.addEventListener("scroll", function() {
         jsh.select("#info_image").js.style.backgroundPositionY = (-(window.scrollY / 15) + 35) + "%";
     });
