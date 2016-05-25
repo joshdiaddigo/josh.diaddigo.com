@@ -5,7 +5,11 @@ require_once "./auth.php";
 require_once "database.php";
 
 $xml = new SimpleXMLElement('<Response/>');
-$reply = get_response();
+try {
+    $reply = get_response();
+} catch (Exception $ex) {
+    $reply = "I've encountered an error:\n\n".$ex->getMessage();
+}
 $sms = $xml->addChild("Sms", $reply);
 
 Header('Content-type: text/xml');
