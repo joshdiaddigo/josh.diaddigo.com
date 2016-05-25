@@ -1,7 +1,7 @@
 #mobile_nav_container {
     height: 35px;
     width: 100%;
-    background: #222;
+    background: rgba(34, 34, 34, 0.7);
     display: none;
     position: fixed;
     left: 0;
