@@ -38,19 +38,25 @@ function setup() {
     });
 
     jsh.select("#mobile_nav_button").js.addEventListener("touchstart", function(e) {
+        var moved = false;
         var move_listener = function(e) {
             jsh.select("#nav").js.style.transform = "translateX(" + (e.pageX - window.innerWidth) + "px)";
+            moved = true;
         };
 
         var end_listener = function(e) {
             e.target.removeEventListener("touchmove", move_listener);
             e.target.removeEventListener("touchend", end_listener);
             jsh.select("#nav").js.style.transform = "";
-            move_mobile_tray();
+            jsh.select("#nav").js.style.transition = "";
+            if (moved) {
+                move_mobile_tray();
+            }
         };
 
         e.target.addEventListener("touchmove", move_listener);
         e.target.addEventListener("touchend", end_listener);
+        jsh.select("#nav").js.style.transition = "none";
     });
 
     window.addEventListener("scroll", function() {
