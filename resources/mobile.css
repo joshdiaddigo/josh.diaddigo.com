@@ -19,6 +19,10 @@
         display: none;
     }
 
+    #logo {
+        margin-right: 0;
+    }
+
     .nav_item {
         display: block;
         padding: 10px 10px 10px 20px;
