@@ -11,12 +11,15 @@ function alert_setup() {
         var init_window_x = alert_window.style.left == "" ? 0 : parseInt(alert_window.style.left);
         var init_window_y = alert_window.style.top == "" ? 0 : parseInt(alert_window.style.top);
 
+        var left_bound = ((window.innerWidth - jsh.select("#jsh_alert_window").js.clientWidth) / 2);
+        var upper_bound = ((window.innerHeight - jsh.select("#jsh_alert_window").js.clientHeight) / 2);
+
         var listener = function(e) {
             var dx = init_mouse_x - e.pageX;
             var dy = init_mouse_y - e.pageY;
 
-            alert_window.style.left = (init_window_x - dx) + "px";
-            alert_window.style.top = (init_window_y - dy) + "px";
+            alert_window.style.left = Math.min(Math.max(-left_bound, (init_window_x - dx)), left_bound) + "px";
+            alert_window.style.top = Math.min(Math.max(-upper_bound + 40, (init_window_y - dy)), upper_bound) + "px";
 
             update_alert_pos();
         };
