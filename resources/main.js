@@ -55,8 +55,10 @@ function setup() {
         var end_listener = function(e) {
             e.target.removeEventListener("touchmove", move_listener);
             e.target.removeEventListener("touchend", end_listener);
-            jsh.select("#nav").js.style.transform = "";
-            jsh.select("#nav").js.style.transition = "";
+            nav.js.style.transform = "";
+            nav.js.style.transition = "";
+            content.js.style.transform = "";
+            content.js.style.transition = "";
             if (moved) {
                 move_mobile_tray();
             }
@@ -64,7 +66,8 @@ function setup() {
 
         e.target.addEventListener("touchmove", move_listener);
         e.target.addEventListener("touchend", end_listener);
-        jsh.select("#nav").js.style.transition = "none";
+        nav.js.style.transition = "none";
+        content.js.style.transition = "none";
     });
 
     window.addEventListener("scroll", function() {
