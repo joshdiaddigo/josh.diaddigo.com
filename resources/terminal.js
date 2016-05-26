@@ -45,7 +45,7 @@ var terminal = {
             retainglobals: true}
         );
 
-        jsh.select("#terminal_title").js.addEventListener("mousedown touchstart", function(e) {
+        jsh.select("#terminal_title").js.addEventListener("mousedown", function(e) {
             var terminal_window = jsh.select("#terminal_window").js;
 
             var init_mouse_x = e.pageX;
@@ -64,15 +64,15 @@ var terminal = {
                 terminal_window.style.top = Math.max(upper_bound, (init_window_y - dy)) + "px";
             };
 
-            window.addEventListener("mousemove touchmove", listener);
+            window.addEventListener("mousemove", listener);
 
             var clear_listeners = function() {
-                window.removeEventListener("mousemove touchmove", listener);
-                window.removeEventListener("mouseup touchend", clear_listeners);
+                window.removeEventListener("mousemove", listener);
+                window.removeEventListener("mouseup", clear_listeners);
                 document.body.setAttribute("style", "");
             };
 
-            window.addEventListener("mouseup touchend", clear_listeners);
+            window.addEventListener("mouseup", clear_listeners);
         });
 
         jsh.select("#terminal_resize_bottom_right").js.addEventListener("mousedown", function(e) {

@@ -3,7 +3,7 @@ var current_page;
 window.onload = function() {
     jsh.cm.setup();
     terminal.setup();
-    alert_setup();
+    frosted_alert.setup();
     setup();
 };
 
