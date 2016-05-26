@@ -71,6 +71,11 @@ function setup() {
 }
 
 function open_page(page_div_id) {
+    if (page_div_id.length > 2 && page_div_id[1] == "/") {
+        open_page(page_div_id.slice(2));
+        return;
+    }
+
     if (page_div_id == "terminal_page") {
         terminal.open();
         return
