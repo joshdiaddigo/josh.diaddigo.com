@@ -226,7 +226,8 @@ var terminal = {
                         } else if (directory[directory.length - 1][path_items[i]] != undefined) {
                             directory.push(directory[directory.length - 1][path_items[i]]);
                         } else if (path_items[i] == "~") {
-                            directory = [terminal.file_system, terminal.file_system.Users, terminal.file_system.Users.Guest];
+                            directory = [terminal.file_system,
+                                terminal.file_system.Users, terminal.file_system.Users.Guest];
                         } else if (path_items[i] != ".") {
                             terminal.output("\n-bash: ls: " + path_items[i] + ": No such file or directory");
                             return;

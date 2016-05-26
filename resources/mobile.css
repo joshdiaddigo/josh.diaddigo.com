@@ -15,6 +15,10 @@
         display: block;
     }
 
+    #home_page_welcome {
+        display: none;
+    }
+
     .nav_item {
         display: block;
         padding: 10px 10px 10px 20px;

@@ -37,6 +37,21 @@ function setup() {
         move_mobile_tray();
     });
 
+    jsh.select("#mobile_nav_button").js.addEventListener("touchstart", function(e) {
+        var move_listener = function(e) {
+            jsh.select("#nav").js.style.transform = "translateX(" + (e.pageY - window.innerWidth) + "px)";
+        };
+
+        var end_listener = function(e) {
+            e.target.removeEventListener("touchmove", move_listener);
+            e.target.removeEventListener("touchend", end_listener);
+            jsh.select("#nav").js.style.transform = "";
+        };
+
+        e.target.addEventListener("touchmove", move_listener);
+        e.target.addEventListener("touchend", end_listener);
+    });
+
     window.addEventListener("scroll", function() {
         jsh.select("#info_image").js.style.backgroundPositionY = (-(window.scrollY / 15) + 35) + "%";
     });
