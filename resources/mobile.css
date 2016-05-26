@@ -10,6 +10,10 @@
     transition: left 0.5s;
 }
 
+#content {
+    transition: transform 0.5s;
+}
+
 @media screen and (max-width: 700px) {
     #mobile_nav_button {
         display: block;
@@ -66,5 +70,9 @@
     .show_nav #mobile_nav_button {
         left: 0;
         top: 0;
+    }
+
+    .show_nav + #content {
+        transform: translateX(-200px);
     }
 }

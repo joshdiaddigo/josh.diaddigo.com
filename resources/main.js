@@ -39,8 +39,15 @@ function setup() {
 
     jsh.select("#mobile_nav_button").js.addEventListener("touchstart", function(e) {
         var moved = false;
+
+        var nav = jsh.select("#nav");
+        var content = jsh.select("#content");
+
         var move_listener = function(e) {
-            jsh.select("#nav").js.style.transform = "translateX(" + Math.max((e.pageX - window.innerWidth), -200) + "px)";
+            var displacement = Math.max((e.pageX - window.innerWidth), -200);
+            nav.js.style.transform = "translateX(" + displacement + "px)";
+            content.js.style.transform = "translateX(" + displacement + "px)";
+
             moved = true;
             e.preventDefault();
         };
