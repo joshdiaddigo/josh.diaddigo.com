@@ -47,8 +47,6 @@ function alert_setup() {
 }
 
 function alert(message, title, args) {
-    jsh.select("#nav").js.style.transform = "translateY(-100%)";
-
     args = args == undefined ? {} : args;
 
     args.button_callback = (args.button_callback == undefined) ? function() {close_alert();} : args.button_callback;
@@ -60,8 +58,6 @@ function alert(message, title, args) {
 }
 
 function close_alert() {
-    jsh.select("#nav").js.style.transform = "translateY(0)";
-
     setTimeout(function() {
         alert_window.style.left = alert_window.style.top = "0px";
     }, 500);
