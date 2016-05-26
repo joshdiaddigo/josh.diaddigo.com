@@ -40,9 +40,9 @@ function setup() {
     jsh.select("#mobile_nav_button").js.addEventListener("touchstart", function(e) {
         var moved = false;
         var move_listener = function(e) {
-            jsh.select("#nav").js.style.transform = "translateX(" + Math.min((e.pageX - window.innerWidth), 200) + "px)";
+            jsh.select("#nav").js.style.transform = "translateX(" + Math.max((e.pageX - window.innerWidth), -200) + "px)";
             moved = true;
-            e.stopPropagation();
+            e.preventDefault();
         };
 
         var end_listener = function(e) {
