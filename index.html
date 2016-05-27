@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <title>Joshua Diaddigo</title>
     <script src="./resources/lib/jsh/jsh.js"></script>
-    <script src="./resources/main.js"></script>
-    <script src="./resources/terminal.js"></script>
-    <script src="./resources/frosted_glass_alert.js"></script>
+    <script src="resources/js/main.js"></script>
+    <script src="resources/js/terminal.js"></script>
+    <script src="resources/js/messages.js"></script>
+    <script src="resources/js/frosted_glass_alert.js"></script>
     <link rel="stylesheet" type="text/css" href="./resources/lib/jsh/jsh.css">
-    <link rel="stylesheet" type="text/css" href="./resources/main.css">
-    <link rel="stylesheet" type="text/css" href="./resources/mobile.css">
-    <link rel="stylesheet" type="text/css" href="./resources/terminal.css">
-    <link rel="stylesheet" type="text/css" href="./resources/frosted_glass_alert.css">
-    <link rel="stylesheet" type="text/css" href="./resources/AktivGrotesk.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/messages.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/terminal.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/frosted_glass_alert.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/AktivGrotesk.css">
     <meta media="screen and (max-width: 640px)" name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="Description" content="Stroz Friedberg Summer Associate and CS 1301 Head TA at the Georgia Institute of Technology.">
     <meta name="google-site-verification" content="iCqSLOHpLSKMQuOHLz7teb3JGKM9KgnTSZa-MnL4kMg">
@@ -170,6 +172,15 @@
                 <img src="resources/media/resume_icon.svg" width="150"/><br>
                 resume.pdf
             </a>
+        </div>
+        <div class="page transparent display_none" id="things_page">
+            <div id="messages"></div>
+            <div id="messages_footer">
+                <div id="messages_footer_input_container">
+                    <input id="messages_footer_input" placeholder="message"/>
+                </div>
+                <div id="messages_send" class="messages_send_inactive">Send</div>
+            </div>
         </div>
     </div>
     <script src="./resources/lib/html2canvas.js"></script>

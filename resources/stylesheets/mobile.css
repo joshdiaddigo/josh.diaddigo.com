@@ -1,7 +1,7 @@
 #mobile_nav_button {
     height: 40px;
     width: 40px;
-    background: url(media/mobile_toggle.png) no-repeat center;
+    background: url(../media/mobile_toggle.png) no-repeat center;
     background-size: 70%;
     cursor: pointer;
     display: none;
