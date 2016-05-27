@@ -11,6 +11,7 @@ if ($action == "receive") {
     $user_id = preg_replace("/[^A-Za-z0-9]*/", "", $_GET["user_id"]);
     $message = htmlspecialchars($_GET["message"]);
     $message = trim($message);
+    $message = preg_replace("/[\x{1F600}-\x{1F64F}]+/u", "<span class='emoji'>$0</span>", $message);
 
     if (strlen($message) < 1) return;
 
