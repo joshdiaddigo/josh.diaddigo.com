@@ -114,7 +114,7 @@ var messages = {
         var message_div = document.createElement("div");
         message_div.classList.add(origin + "_message");
         message_div.classList.add("message");
-        message_div.innerText = message;
+        message_div.innerHTML = message;
         container_div.appendChild(message_div);
 
         var curl_div = document.createElement("div");

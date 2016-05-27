@@ -9,7 +9,10 @@ if ($action == "receive") {
     echo json_encode(query("SELECT id, user_id, message, time FROM messages WHERE id > ".$latest_id.";", $DB_PASSWORD, false));
 } else {
     $user_id = preg_replace("/[^A-Za-z0-9]*/", "", $_GET["user_id"]);
-    $message = preg_replace("/[^A-Za-z0-9 ]*/", "", $_GET["message"]);
+    $message = htmlspecialchars($_GET["message"]);
+    $message = trim($message);
+
+    if (strlen($message) < 1) return;
 
     query("INSERT INTO messages (user_id, message, time) VALUES (\"".$user_id."\", \"".$message."\", NOW());", $DB_PASSWORD, true);
 }
