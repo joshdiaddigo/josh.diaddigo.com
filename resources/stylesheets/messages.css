@@ -37,7 +37,7 @@
     background: #fff;
     border: 1px solid rgba(173, 173, 173, 0.5);
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 16px;
     padding: 4px;
     font-family: sans-serif;
     box-sizing: border-box;
@@ -46,6 +46,7 @@
     appearance: none;
     -webkit-appearance: none;
     font-weight: 200;
+    height: 29px;
 }
 
 #messages_send {
@@ -145,5 +146,6 @@
     font-size: 16px;
     line-height: 14px;
     position: relative;
-    top: 2px;
+    top: 1px;
+    vertical-align: middle;
 }
