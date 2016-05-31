@@ -56,7 +56,9 @@ var frosted_alert = {
         window.addEventListener("resize", function() {
             frosted_alert.update_pos();
             clearTimeout(refresh_render_timeout);
-            refresh_render_timeout = setTimeout(frosted_alert.update_bg(), 500);
+            refresh_render_timeout = setTimeout(function() {
+                frosted_alert.update_bg();
+            }, 500);
         });
     },
 
