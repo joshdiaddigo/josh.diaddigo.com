@@ -15,7 +15,7 @@ if ($action == "submit"
     $longitude = preg_replace("/[^0-9.]*/", "", $_POST["longitude"]);
     $latitude = preg_replace("/[^0-9.]*/", "", $_POST["latitude"]);
 
-    query("INSERT INTO coffee_spots (rating, name, comments, latitude, longitude, date) VALUES (".$rating.", \"".$name."\", \"".$comments."\", ".$longitude.", ".$latitude.", NOW());", $DB_PASSWORD, false);
+    query("INSERT INTO coffee_spots (rating, name, comments, latitude, longitude, date) VALUES (".$rating.", \"".$name."\", \"".$comments."\", ".$latitude.", ".$longitude.", NOW());", $DB_PASSWORD, false);
 } else {
     echo json_encode(query("SELECT * FROM coffee_spots;", $DB_PASSWORD, false));
 }
