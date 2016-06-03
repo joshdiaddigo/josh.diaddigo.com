@@ -8,12 +8,14 @@
     <script src="resources/js/terminal.js"></script>
     <script src="resources/js/messages.js"></script>
     <script src="resources/js/frosted_glass_alert.js"></script>
+    <script src="resources/js/americanos.js"></script>
     <link rel="stylesheet" type="text/css" href="./resources/lib/jsh/jsh.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/mobile.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/messages.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/terminal.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/frosted_glass_alert.css">
+    <link rel="stylesheet" type="text/css" href="resources/stylesheets/americanos.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/AktivGrotesk.css">
     <meta media="screen and (max-width: 640px)" name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="Description" content="Stroz Friedberg Summer Associate and CS 1301 Head TA at the Georgia Institute of Technology.">
@@ -182,10 +184,25 @@
                 <div id="messages_send" class="messages_send_inactive">Send</div>
             </div>
         </div>
+        <div class="page transparent display_none" id="americanos_page">
+            <table id="americano_visits_headers">
+                <tr>
+                    <td class="americano_visits_rating">rating</td>
+                    <td class="americano_visits_date">date</td>
+                    <td class="americano_visits_name">coffee shop</td>
+                    <td class="americano_visits_comments">comments</td>
+                    <td class="americano_visits_location">location</td>
+                </tr>
+            </table>
+            <div id="americano_visits_scroll">
+                <div id="americano_visits_container"></div>
+            </div>
+        </div>
     </div>
     <script src="./resources/lib/html2canvas.js"></script>
     <script src="./resources/lib/StackBoxBlur.js"></script>
     <script src="./resources/lib/skulpt/skulpt.min.js" type="text/javascript"></script>
     <script src="./resources/lib/skulpt/skulpt-stdlib.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr30N2nUmYZf8Fntm_XP-FyjIBkZ4qcZw"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ window.onload = function() {
     terminal.setup();
     messages.setup();
     frosted_alert.setup();
+    americano_map.setup();
     setup();
 };
 
