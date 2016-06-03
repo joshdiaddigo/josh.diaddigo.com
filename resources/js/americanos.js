@@ -53,8 +53,7 @@ var americano_map = {
                 lng: longitude,
                 lat: latitude
             },
-            scrollwheel: false,
-            zoom: 10
+            zoom: 8
         });
     }
 };

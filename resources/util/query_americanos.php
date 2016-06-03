@@ -10,8 +10,8 @@ $action = preg_replace("/[^a-z]*/", "", $_POST["action"]);
 if ($action == "submit"
     && openssl_digest($_POST["password"], "sha512") == $ADMIN_PASSWORD_HASH) {
     $rating = preg_replace("/[^0-9]*/", "", $_POST["rating"]);
-    $name = htmlspecialchars(preg_replace("/[^A-Za-z0-9-'&]*/", "", $_POST["name"]));
-    $comments = htmlspecialchars(preg_replace("/[^A-Za-z0-9–.!,;']*/", "", $_POST["comments"]));
+    $name = htmlspecialchars(preg_replace("/[^A-Za-z0-9-'& ]*/", "", $_POST["name"]));
+    $comments = htmlspecialchars(preg_replace("/[^A-Za-z0-9–.!,;' ]*/", "", $_POST["comments"]));
     $longitude = preg_replace("/[^0-9.]*/", "", $_POST["longitude"]);
     $latitude = preg_replace("/[^0-9.]*/", "", $_POST["latitude"]);
 

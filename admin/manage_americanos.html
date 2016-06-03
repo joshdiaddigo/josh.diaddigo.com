@@ -23,7 +23,7 @@
     </select>
     <input class="item" id="name" placeholder="coffee shop" autocomplete="off"/>
     <div id="comments_container">
-        <textarea class="item" id="comments" placeholder="comments"  autocomplete="off"></textarea>
+        <textarea class="item" id="comments" placeholder="comments" autocomplete="off"></textarea>
     </div>
     <input class="item" id="password" type="password" placeholder="password"/>
     <div class="item" id="submit">submit</div>
@@ -64,6 +64,8 @@
                 }
             });
         });
+
+        jsh.select("#comments").js.value = "";
     </script>
 
     <style>
