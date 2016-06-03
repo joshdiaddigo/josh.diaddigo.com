@@ -30,7 +30,10 @@ var americano_map = {
                     comments_column.innerText = response[i]["comments"];
                     comments_column.classList.add("americano_visits_comments");
 
-                    americano_map.create_map(location_column, parseFloat(response[i]["longitude"]), parseFloat(response[i]["latitude"]));
+                    americano_map.create_map(location_column,
+                        parseFloat(response[i]["longitude"]),
+                        parseFloat(response[i]["latitude"]));
+
                     location_column.classList.add("americano_visits_location");
 
                     row.appendChild(rating_column);
@@ -53,7 +56,7 @@ var americano_map = {
                 lng: longitude,
                 lat: latitude
             },
-            zoom: 8
+            zoom: 16
         });
     }
 };
