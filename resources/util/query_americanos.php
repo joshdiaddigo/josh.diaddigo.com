@@ -12,8 +12,8 @@ if ($action == "submit"
     $rating = preg_replace("/[^0-9]*/", "", $_POST["rating"]);
     $name = htmlspecialchars(preg_replace("/[^A-Za-z0-9-'& ]*/", "", $_POST["name"]));
     $comments = htmlspecialchars(preg_replace("/[^A-Za-z0-9–.!,;' ]*/", "", $_POST["comments"]));
-    $longitude = preg_replace("/[^0-9.-]*/", "", $_POST["longitude"]);
-    $latitude = preg_replace("/[^0-9.-]*/", "", $_POST["latitude"]);
+    $longitude = preg_replace("/[^0-9-.]*/", "", $_POST["longitude"]);
+    $latitude = preg_replace("/[^0-9-.]*/", "", $_POST["latitude"]);
 
     query("INSERT INTO coffee_spots (rating, name, comments, latitude, longitude, date) VALUES (".$rating.", \"".$name."\", \"".$comments."\", ".$latitude.", ".$longitude.", NOW());", $DB_PASSWORD, false);
 } else {
