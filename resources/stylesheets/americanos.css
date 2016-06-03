@@ -63,12 +63,11 @@
 }
 
 .americano_visits_comments {
-    width: 30%;
     vertical-align: top;
 }
 
 .americano_visits_location {
-    width: 30%;
+    width: 300px;
 }
 
 #americano_visits_scroll {
