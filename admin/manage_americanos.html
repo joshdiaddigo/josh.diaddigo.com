@@ -30,7 +30,33 @@
 
     <script>
         jsh.select("#submit").js.addEventListener("click", function() {
-            navigator.geolocation.getCurrentPosition(function(pos) {
+
+            var watch_id = navigator.geolocation.watchPosition(function (pos) {
+                if (pos.coords.accuracy < 20) {
+                    send_review(pos);
+                    navigator.geolocation.clearWatch(watch_id);
+                } else {
+                    console.log(pos);
+                }
+            }, function (error) {
+                switch (error.code) {
+                    case 1:
+                        alert("Please allow access to your location.");
+                        break;
+                    case 2:
+                        alert("Location not available.");
+                        break;
+                    default:
+                        alert("Could not get enough accuracy.");
+                }
+                navigator.geolocation.clearWatch(watch_id);
+            }, {
+                timeout: 30000,
+                enableHighAccuracy: true,
+                maximumAge: Infinity
+            });
+
+            function send_review(pos) {
                 var rating = jsh.select("#rating").js.value;
                 var name = jsh.select("#name").js.value;
                 var comments = jsh.select("#comments").js.value;
@@ -53,16 +79,7 @@
                         location.reload();
                     }
                 });
-            }, function(error) {
-                switch(error.code) {
-                    case 1:
-                        alert("Please allow access to your location.");
-                        break;
-                    case 2:
-                        alert("Location not available.");
-                        break;
-                }
-            });
+            }
         });
 
         jsh.select("#comments").js.value = "";
