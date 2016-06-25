@@ -30,7 +30,11 @@
     .nav_item {
         display: block;
         padding: 10px 10px 10px 20px;
-        border: 1px solid #333;
+        transition: 0.5s;
+    }
+
+    .nav_item:hover {
+        padding-left: 30px;
     }
 
     a .nav_item {
@@ -44,7 +48,7 @@
     #right_aligned_buttons {
         float: none;
         display: block;
-        border-top: 2px solid #555;
+        border-top: 1px solid #333;
     }
 
     #nav {
@@ -60,7 +64,6 @@
     #nav_inner {
         height: 100%;
         background: #222;
-        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
     }
 
     .show_nav {
