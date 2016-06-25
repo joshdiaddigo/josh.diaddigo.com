@@ -1,3 +1,17 @@
+#mobile_contact_image {
+    width: 200px;
+    min-width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: url(../media/joshua_diaddigo_contact.jpg);
+    background-size: cover;
+    border: 2px solid #a00;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    display: none;
+}
+
 #mobile_nav_button {
     height: 40px;
     width: 40px;
@@ -15,11 +29,13 @@
 }
 
 @media screen and (max-width: 700px) {
-    #mobile_nav_button {
+    #mobile_nav_button,
+    #mobile_contact_image{
         display: block;
     }
 
-    #home_page_welcome {
+    #home_page_welcome,
+    #contact_image {
         display: none;
     }
 
