@@ -29,6 +29,7 @@
 }
 
 #jsh_alert_message {
+    overflow: hidden;
     font-weight: 800;
     color: #fff;
 }

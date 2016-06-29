@@ -205,3 +205,18 @@ a:hover {
     filter: none !important;
     -webkit-filter: none !important;
 }
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    transition: 0.5s;
+    background: #111;
+    width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a00;
+}
