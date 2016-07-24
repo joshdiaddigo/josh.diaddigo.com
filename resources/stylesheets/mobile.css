@@ -28,7 +28,7 @@
     transition: transform 0.5s;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     #mobile_nav_button,
     #mobile_contact_image{
         display: block;
@@ -93,5 +93,9 @@
 
     .show_nav + #content {
         transform: translateX(-200px);
+    }
+
+    #videos_page_inner iframe {
+        height: 200px;
     }
 }
