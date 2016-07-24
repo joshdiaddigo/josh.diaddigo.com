@@ -76,7 +76,8 @@ a:hover {
 }
 
 #info_page_inner,
-#projects_page_inner {
+#projects_page_inner,
+#videos_page_inner {
     width: 100%;
     max-width: 1000px;
     color: #fff;
@@ -88,7 +89,8 @@ a:hover {
 }
 
 #info_page_inner .title,
-#projects_page_inner .title {
+#projects_page_inner .title,
+#videos_page_inner .title {
     margin-top: 75px;
     color: #aaa;
     font-weight: 800;
@@ -98,7 +100,8 @@ a:hover {
 }
 
 #info_page_inner p,
-#projects_page_inner p {
+#projects_page_inner p,
+#videos_page_inner p {
     padding-left: 15px;
     padding-right: 17px;
     box-sizing: border-box;
@@ -145,6 +148,11 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     transition: height 0.5s;
+}
+
+.video_page_credits {
+    font-size: 10px;
+    line-height: 10px;
 }
 
 #nav {

@@ -6,13 +6,11 @@
     <script src="./resources/lib/jsh/jsh.js"></script>
     <script src="resources/js/main.js"></script>
     <script src="resources/js/terminal.js"></script>
-    <script src="resources/js/messages.js"></script>
     <script src="resources/js/frosted_glass_alert.js"></script>
     <script src="resources/js/americanos.js"></script>
     <link rel="stylesheet" type="text/css" href="./resources/lib/jsh/jsh.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/main.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/mobile.css">
-    <link rel="stylesheet" type="text/css" href="resources/stylesheets/messages.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/terminal.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/frosted_glass_alert.css">
     <link rel="stylesheet" type="text/css" href="resources/stylesheets/americanos.css">
@@ -29,6 +27,7 @@
             <div class="nav_item">info</div>
             <div class="nav_item">contact</div>
             <div class="nav_item">projects</div>
+            <div class="nav_item">videos</div>
             <div class="nav_item">resume</div>
             <div class="nav_item">terminal</div>
             <div id="right_aligned_buttons">
@@ -188,13 +187,26 @@
                 resume.pdf
             </a>
         </div>
-        <div class="page transparent display_none" id="things_page">
-            <div id="messages"></div>
-            <div id="messages_footer">
-                <div id="messages_footer_input_container">
-                    <input id="messages_footer_input" placeholder="message"/>
-                </div>
-                <div id="messages_send" class="messages_send_inactive">Send</div>
+        <div class="page transparent display_none" id="videos_page">
+            <div id="videos_page_inner">
+                <div class="title">Portland</div>
+                <p>
+                    <iframe src="https://player.vimeo.com/video/156166748" width="100%" height="540" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br>
+                    <br>
+                    <span class="video_page_credits">
+                        Credits:<br>
+                        Joshua Diaddigo<br>
+                        Caleb Diaddigo<br>
+                    </span>
+                </p>
+                <div class="title">White Umbrella</div>
+                <p>
+                    <iframe src="https://player.vimeo.com/video/130387147?color=eeeeee&title=0&byline=0&portrait=0" width="100%" height="400" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br>
+                    <br>
+                    <span class="video_page_credits">
+                        Credits: <a href="http://www.imdb.com/title/tt4317650/fullcredits">imdb</a>
+                    </span>
+                </p>
             </div>
         </div>
         <div class="page transparent display_none" id="americanos_page">
