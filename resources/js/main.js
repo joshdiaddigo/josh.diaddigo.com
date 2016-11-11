@@ -4,7 +4,6 @@ window.onload = function() {
     jsh.cm.setup();
     terminal.setup();
     frosted_alert.setup();
-    americano_map.setup();
     setup();
 };
 
