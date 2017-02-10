@@ -5,6 +5,13 @@ window.onload = function() {
     terminal.setup();
     frosted_alert.setup();
     setup();
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-91788947-1', 'auto');
+    ga('send', 'pageview');
 };
 
 function setup() {
@@ -165,3 +172,4 @@ function move_mobile_tray(close) {
         nav.add_class("show_nav");
     }
 }
+
