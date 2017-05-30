@@ -77,12 +77,6 @@ function setup() {
         content.js.style.transition = "none";
     });
 
-    var info_image = document.getElementById("info_image");
-    var info_image_top = parseInt(window.getComputedStyle(info_image).backgroundPositionY.substr(0, 2));
-    window.addEventListener("scroll", function() {
-        info_image.style.backgroundPositionY = (-(window.scrollY / 50) + info_image_top) + "%";
-    });
-
     if ("onhashchange" in window) {
         window.addEventListener("hashchange", on_hash_change);
     }
