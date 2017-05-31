@@ -130,6 +130,10 @@ a:hover {
     transition: height 0.5s;
 }
 
+.projects_page_image_anchor_top {
+    object-position: top;
+}
+
 .video_page_credits {
     font-size: 10px;
     line-height: 10px;
