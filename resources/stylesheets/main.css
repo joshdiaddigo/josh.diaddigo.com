@@ -1,15 +1,15 @@
 html, body {
-    background-color: #222;
+    background-color: #eee;
     font-family: AktivGroteskLight, sans-serif;
 }
 
 a {
-    color: #f00;
+    color: #c00;
     text-decoration: none;
 }
 
 a:hover {
-    color: #a00;
+    color: #c00;
 }
 
 .page {
@@ -36,7 +36,7 @@ a:hover {
 }
 
 #home_page {
-    color: #ddd;
+    color: #222;
     font-weight: 100;
     font-size: 40px;
     display: flex;
@@ -48,7 +48,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #000;
     font-weight: 800;
 }
 
@@ -71,7 +71,7 @@ a:hover {
     border-radius: 50%;
     background: url(../media/joshua_diaddigo_contact.jpg);
     background-size: cover;
-    border: 2px solid #a00;
+    border: 2px solid #c00;
     margin-right: 15px;
 }
 
@@ -79,7 +79,7 @@ a:hover {
 #videos_page_inner {
     width: 100%;
     max-width: 1000px;
-    color: #fff;
+    color: #000;
     margin-left: auto;
     margin-right: auto;
     font-weight: 800;
@@ -90,10 +90,10 @@ a:hover {
 #projects_page_inner .title,
 #videos_page_inner .title {
     margin-top: 75px;
-    color: #aaa;
+    color: #444;
     font-weight: 800;
     font-size: 26px;
-    border-left: 2px solid #700;
+    border-left: 2px solid #c00;
     padding-left: 15px;
 }
 
@@ -109,7 +109,7 @@ a:hover {
 #project_page_header {
     text-align: center;
     margin-top: 70px;
-    color: #666;
+    color: #888;
     font-size: 28px;
 }
 
@@ -123,7 +123,7 @@ a:hover {
     object-fit: cover;
     cursor: pointer;
     margin-top: 10px;
-    border: 1px solid #a00;
+    border: 1px solid #c00;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -132,6 +132,10 @@ a:hover {
 
 .projects_page_image_anchor_top {
     object-position: top;
+}
+
+.projects_page_image_anchor_bottom {
+    object-position: bottom;
 }
 
 .video_page_credits {
@@ -143,7 +147,7 @@ a:hover {
     width: 100%;
     animation: nav_in 1s;
     position: fixed;
-    background: rgba(34, 34, 34, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     padding: 5px;
     box-sizing: border-box;
     z-index: 100;
@@ -165,20 +169,20 @@ a:hover {
 .nav_item {
     font-family: AktivGroteskStd, sans-serif;
     font-weight: 800;
-    color: #ddd;
+    color: #888;
     font-size: 16px;
     padding: 5px;
     cursor: pointer;
     display: inline-block;
 }
 .nav_item:hover, .nav_item a:hover {
-    color: #a00;
+    color: #c00;
     transition: 0.5s;
 }
 
 .nav_item a {
     text-decoration: none;
-    color: #ddd;
+    color: #222;
 }
 
 @keyframes nav_in {
@@ -199,17 +203,17 @@ a:hover {
     -webkit-filter: none !important;
 }
 
-::-webkit-scrollbar {
+:not(#terminal_scroll)::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
 }
 
 ::-webkit-scrollbar-track {
     transition: 0.5s;
-    background: #111;
+    background: #eee;
     width: 0;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #a00;
+    background: #c00;
 }

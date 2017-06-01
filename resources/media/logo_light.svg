@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+	    <mask id="cut1">
+			 <polygon points="100,100 114,0 200,0 200,100" fill="#ffffff"/>
+	   	</mask>
+	   	<mask id="cut2">
+			<rect height="200" width="100" x="0" fill="#ffffff"/>
+	   	</mask>
+  	</defs>
+	
+	<ellipse ry="90" rx="90" cy="100" cx="100" stroke-width="13" stroke="#cccccc" fill="none"/>
+	<ellipse ry="90" rx="90" cy="100" cx="100" stroke-width="13" stroke="#cc0000" fill="none" mask="url(#cut1)"/>
+	<ellipse ry="90" rx="90" cy="100" cx="100" stroke-width="13" stroke="#999999" fill="none" mask="url(#cut2)"/>
+</svg>
