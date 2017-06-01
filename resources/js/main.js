@@ -13,11 +13,11 @@ window.onload = function() {
     ga('create', 'UA-91788947-1', 'auto');
     ga('send', 'pageview');
 
-    //window.addEventListener("page_opened", function() {
-    //    ga('send', 'pageview', {
-    //        'page': location.pathname + location.search  + location.hash
-    //    });
-    //});
+    window.addEventListener("page_opened", function() {
+        ga('send', 'pageview', {
+            'page': location.pathname + location.search  + location.hash
+        });
+    });
 };
 
 function setup() {

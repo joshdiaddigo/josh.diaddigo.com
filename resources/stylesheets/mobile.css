@@ -5,7 +5,7 @@
     border-radius: 50%;
     background: url(../media/joshua_diaddigo_contact.jpg);
     background-size: cover;
-    border: 2px solid #a00;
+    border: 2px solid #c00;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -15,7 +15,7 @@
 #mobile_nav_button {
     height: 40px;
     width: 40px;
-    background: url(../media/mobile_toggle.png) no-repeat center;
+    background: url(../media/mobile_toggle_light.png) no-repeat center;
     background-size: 70%;
     cursor: pointer;
     display: none;
@@ -54,32 +54,33 @@
     }
 
     a .nav_item {
-        border-color: #333;
+        border-color: #ddd;
     }
     
     .nav_item:hover {
-        background: #333;
+        background: #ddd;
     }
 
     #right_aligned_buttons {
         float: none;
         display: block;
-        border-top: 1px solid #333;
+        border-top: 1px solid #ddd;
     }
 
     #nav {
         height: 100%;
-        border-left: 1px solid #a00;
+        border-left: 1px solid #c00;
         box-sizing: border-box;
         right: -200px;
         max-width: 200px;
         transition: right 0.5s;
         padding: 0;
+        background: #eee;
     }
 
     #nav_inner {
         height: 100%;
-        background: #222;
+        background: #eee;
     }
 
     .show_nav {
