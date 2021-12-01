@@ -2,4 +2,4 @@
 
 This is the full source code for josh.diaddigo.com.
 
-© 2016 Joshua C. Diaddigo – all rights reserved.
+© 2021 Josh C. Diaddigo – all rights reserved.

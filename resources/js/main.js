@@ -3,7 +3,6 @@ var current_page;
 window.onload = function() {
     jsh.cm.setup();
     terminal.setup();
-    frosted_alert.setup();
     setup();
 
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -110,7 +109,7 @@ function open_page(page_div_id) {
             alert("You don't have permission to view this page. " +
                 "If you're looking for a way to hack me, " +
                 "I would recommend browsing through the " +
-                "<a href=\"https://github.com/dotjoshua/joshua.diaddigo.com\">source code</a> " +
+                "<a href=\"https://github.com/joshdiaddigo/josh.diaddigo.com\">source code</a> " +
                 "of this website for a vulnerability.",
                 "Hm...", {button_text: "cool, thanks"});
         }, 1000);

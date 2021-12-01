@@ -7,7 +7,7 @@
         Hello,
     </Say>
     <Say language="en-GB">
-        I am Jenson -- Joshua Diaddigo's automated assistant. He would like me to give you the following message:
+        I am Jenson -- Josh Diaddigo's automated assistant. He would like me to give you the following message:
     </Say>
     <Say language="en-GB">
         <?php echo $message ?>

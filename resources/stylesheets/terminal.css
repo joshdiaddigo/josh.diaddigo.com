@@ -137,7 +137,7 @@
 }
 
 #terminal_input_field_container:before {
-    content: "joshua.diaddigo.com:~ guest$";
+    content: "josh.diaddigo.com:~ guest$";
     position: absolute;
 }
 

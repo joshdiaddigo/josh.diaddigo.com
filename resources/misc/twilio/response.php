@@ -39,7 +39,7 @@ function get_response() {
             && strtolower(explode(" ", sanitize_input($_POST["Body"], ""))[1]) == "number") {
             return save_number();
         } else {
-            return "Good day, Joshua.";
+            return "Good day, Josh.";
         }
 
     } else {
@@ -68,11 +68,11 @@ function make_call() {
     $client->account->calls->create(
         "+17703774047",
         $destination,
-        "https://joshua.diaddigo.com/resources/misc/twilio/outgoing_call_transcript.php",
+        "https://josh.diaddigo.com/resources/misc/twilio/outgoing_call_transcript.php",
         array(
             "IfMachine" => "Continue",
             "Record" => "true",
-            "StatusCallback" => "https://joshua.diaddigo.com/resources/misc/twilio/call_complete.php",
+            "StatusCallback" => "https://josh.diaddigo.com/resources/misc/twilio/call_complete.php",
             "StatusCallbackMethod" => "POST",
             "StatusCallbackEvent" => array("no-answer", "completed"),
         )
@@ -138,7 +138,7 @@ function save_number() {
 }
 
 function get_other_response() {
-    return "Hello, I am Jenson – Joshua Diaddigo's automated assistant.";
+    return "Hello, I am Jenson – Josh Diaddigo's automated assistant.";
 }
 
 function warning_handler($errno, $errstr) {

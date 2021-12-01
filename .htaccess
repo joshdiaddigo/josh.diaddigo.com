@@ -3,15 +3,15 @@ RewriteCond %{HTTPS} !=on
 RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
 
 
-Redirect /info/ https://joshua.diaddigo.com/#info
-Redirect /info https://joshua.diaddigo.com/#info
-Redirect /about/ https://joshua.diaddigo.com/#info
-Redirect /about https://joshua.diaddigo.com/#info
-Redirect /contact/ https://joshua.diaddigo.com/#contact
-Redirect /contact https://joshua.diaddigo.com/#contact
-Redirect /projects/ https://joshua.diaddigo.com/#projects
-Redirect /projects https://joshua.diaddigo.com/#projects
-Redirect /resume/ https://joshua.diaddigo.com/#resume
-Redirect /resume https://joshua.diaddigo.com/#resume
+Redirect /info/ https://josh.diaddigo.com/#info
+Redirect /info https://josh.diaddigo.com/#info
+Redirect /about/ https://josh.diaddigo.com/#info
+Redirect /about https://josh.diaddigo.com/#info
+Redirect /contact/ https://josh.diaddigo.com/#contact
+Redirect /contact https://josh.diaddigo.com/#contact
+Redirect /projects/ https://josh.diaddigo.com/#projects
+Redirect /projects https://josh.diaddigo.com/#projects
+Redirect /resume/ https://josh.diaddigo.com/#resume
+Redirect /resume https://josh.diaddigo.com/#resume
 
 DirectoryIndex index.html
