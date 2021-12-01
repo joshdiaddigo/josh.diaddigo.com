@@ -1,16 +1,10 @@
-RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
+#RewriteEngine On
+#RewriteCond %{HTTPS} !=on [OR]
+#RewriteCond %{HTTP_HOST} !xn--53hx780o\.ws
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
 
-
-Redirect /info/ https://josh.diaddigo.com/#info
-Redirect /info https://josh.diaddigo.com/#info
-Redirect /about/ https://josh.diaddigo.com/#info
-Redirect /about https://josh.diaddigo.com/#info
 Redirect /contact/ https://josh.diaddigo.com/#contact
 Redirect /contact https://josh.diaddigo.com/#contact
-Redirect /projects/ https://josh.diaddigo.com/#projects
-Redirect /projects https://josh.diaddigo.com/#projects
 Redirect /resume/ https://josh.diaddigo.com/#resume
 Redirect /resume https://josh.diaddigo.com/#resume
 
