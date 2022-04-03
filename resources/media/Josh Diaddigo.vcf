@@ -3,12 +3,12 @@ VERSION:3.0
 PRODID:-//Apple Inc.//macOS 12.0.1//EN
 N:Diaddigo;Josh;;;
 FN:Josh Diaddigo
-ORG:Google;
+ORG:Tiger Global Management;
 EMAIL;type=INTERNET;type=HOME;type=pref:josh@diaddigo.com
 TEL;type=HOME;type=VOICE;type=pref:(770) 377-4047
 item1.ADR;type=HOME;type=pref:;;;New York;;;United States
 item1.X-ABADR:us
-item2.URL;type=pref:http://josh.diaddigo.com
+item2.URL;type=pref:https://josh.diaddigo.com
 item2.X-ABLabel:Website
 BDAY;X-APPLE-OMIT-YEAR=1604:1604-05-12
 PHOTO;ENCODING=b;TYPE=JPEG:/9j/4AAQSkZJRgABAQAAkACQAAD/4QB0RXhpZgAATU0AKgAA
